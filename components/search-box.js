@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 import { BEACHES } from './testdata';
 
-export function SearchBox({ navigation }) {
+export function SearchBox({ navigation, updateBeach }) {
   const data = BEACHES;
   const [query, setQuery] = useState('');
   const [beaches, setBeaches] = useState(BEACHES);
@@ -28,16 +28,18 @@ export function SearchBox({ navigation }) {
     setBeaches(data.slice());
   }
 
+  //when beach is selected, call ApiService, update state, navigate to beach
   function selectedBeach(item) {
-    //update App state
-    //call API Service to get beach data
-    console.log(item);
+    updateBeach(item);
     navigation.navigate('Beach');
   }
 
   return (
     <View>
       <SearchBar
+        style={tailwind(style.searchInput)}
+        containerStyle={tailwind(style.searchContainer)}
+        lightTheme={true}
         onChangeText={updateQuery}
         value={query}
         placeholder='Find a beach...'
@@ -54,7 +56,9 @@ export function SearchBox({ navigation }) {
                 selectedBeach(item);
               }}
             >
-              <Text>{filterBeachNames(item)}</Text>
+              <Text style={tailwind(style.beachName)}>
+                {filterBeachNames(item)}
+              </Text>
             </TouchableOpacity>
           )}
         />
@@ -62,3 +66,9 @@ export function SearchBox({ navigation }) {
     </View>
   );
 }
+
+const style = {
+  searchContainer: 'bg-white',
+  searchInput: 'bg-white',
+  beachName: 'text-xl p-3',
+};
