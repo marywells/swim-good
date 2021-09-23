@@ -1,16 +1,12 @@
-import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import tailwind from 'tailwind-rn';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, FlatList } from 'react-native';
+import { SearchBox } from '../components/search-box';
 
 export function Search({ navigation }) {
   return (
     <View>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('Beach');
-        }}
-      >
-        <Text>Search Bar Here</Text>
-      </TouchableOpacity>
+      <SearchBox navigation={navigation} />
     </View>
   );
 }

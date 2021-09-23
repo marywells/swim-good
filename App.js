@@ -13,7 +13,7 @@ export default function App() {
   return (
     <NavigationContainer>
       {/* <Text style={tailwind(style.header)}>Swim Good</Text> */}
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name='Search' component={Search} />
         <Stack.Screen name='Beach' component={Beach} />
       </Stack.Navigator>
