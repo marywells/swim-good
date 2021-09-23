@@ -1,21 +1,17 @@
+import { REACT_APP_API_KEY } from '@env';
 import moment from 'moment';
+const apiKey = REACT_APP_API_KEY;
 
-//time
-const start = Math.floor(Date.now() / 1000) + 3600;
-const end = start;
-
-//date
+const current = moment().add(1, 'hour').unix();
 const today = moment().format('YYYY-MM-DD');
 const tomorrow = moment().add(1, 'day').format('YYYY-MM-DD');
 
 const params =
   'waterTemperature,waveHeight,airTemperature,swellDirection,windSpeed';
 
-const apiKey = 'test';
-
 export function marineData(lat, long) {
   return fetch(
-    `https://api.stormglass.io/v2/weather/point?lat=${lat}&lng=${long}&params=${params}&start=${start}&end=${end}`,
+    `https://api.stormglass.io/v2/weather/point?lat=${lat}&lng=${long}&params=${params}&start=${current}&end=${current}`,
     {
       headers: {
         Authorization: `${apiKey}`,
