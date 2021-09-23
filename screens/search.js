@@ -6,7 +6,15 @@ import { SearchBox } from '../components/search-box';
 export function Search({ navigation, updateBeach }) {
   return (
     <View>
-      <SearchBox navigation={navigation} updateBeach={updateBeach} />
+      <SearchBox
+        style={tailwind(style.container)}
+        navigation={navigation}
+        updateBeach={updateBeach}
+      />
     </View>
   );
 }
+
+const style = {
+  container: 'bg-pink-300',
+};

@@ -101,7 +101,7 @@ export default function App() {
 
   return (
     <SafeAreaView style={tailwind(style.container)}>
-      <NavigationContainer>
+      <NavigationContainer style={tailwind(style.nav)}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name='Search'>
             {(props) => (
