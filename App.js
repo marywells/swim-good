@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React, { useState, useEffect } from 'react';
 import tailwind from 'tailwind-rn';
 import moment from 'moment';
-import { Text, View, SafeAreaView } from 'react-native';
+import { Text, View, SafeAreaView, BackHandler } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { Search } from './screens/search';
 import { Beach } from './screens/beach';
@@ -91,6 +91,14 @@ export default function App() {
     return directions[Math.round(angle / 45) % 8];
   }
 
+  function clearFields() {
+    setBeachName('');
+    setSwimConditions('');
+    setTideTimes('');
+    setWaterQuality('');
+    console.log('clearing!');
+  }
+
   return (
     <SafeAreaView style={tailwind(style.container)}>
       <NavigationContainer>
@@ -108,6 +116,7 @@ export default function App() {
                 swimConditions={swimConditions}
                 tideTimes={tideTimes}
                 waterQuality={waterQuality}
+                clearFields={clearFields}
               />
             )}
           </Stack.Screen>
