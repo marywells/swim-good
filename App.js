@@ -32,24 +32,29 @@ export default function App() {
   }
 
   function getMarineData(lat, long) {
-    //fetch API and update state
-
-    setSwimConditions({
-      waveHeight: '1.2 metres',
-      swellDir: calcSwellDir(180),
-      windSpeed: '0.3m/s',
-      waterTemp: '15°C',
-      airTemp: '16°C',
-    });
+    // ApiService.marineData(lat, long).then((data) => {
+    //   console.log(data);
+    // });
+    // setSwimConditions({
+    //   waveHeight: '1.2 metres',
+    //   swellDir: calcSwellDir(180),
+    //   windSpeed: '0.3m/s',
+    //   waterTemp: '15°C',
+    //   airTemp: '16°C',
+    // });
   }
 
   function getTidalData(lat, long) {
     //fetch API and update state
-
-    setTideTimes({
-      highTides: ['05:09', '17:47'],
-      lowTides: ['11:48'],
+    //ApiService.tidalData(lat, long);
+    ApiService.tidalData(lat, long).then((result) => {
+      console.log(result);
     });
+
+    // setTideTimes({
+    //   highTides: ['05:09', '17:47'],
+    //   lowTides: ['11:48'],
+    // });
   }
 
   function updateLocalBeach(item) {

@@ -4,34 +4,56 @@ import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 import { BEACHES } from './testdata';
 
-export function SearchBox({ navigation, updateBeach }) {
-  const data = BEACHES;
-  const [query, setQuery] = useState('');
-  const [beaches, setBeaches] = useState(BEACHES);
+// class ItemList extends React.PureComponent {
+//   render() {
+//     const { item } = this.props;
+//     return (
+//       <TouchableOpacity
+//         onPress={() => {
+//           selectedBeach(item);
+//         }}
+//       >
+//         <Text style={tailwind(style.beachName)}>{item.label}</Text>
+//       </TouchableOpacity>
+//     );
+//   }
+// }
 
-  //filter search list
+export function SearchBox({ navigation, updateBeach }) {
+  const [query, setQuery] = useState('');
+  let beaches = BEACHES.slice();
+
   function filterBeachNames(beach) {
     let search = query.toLowerCase();
-    if (
-      beach.label.toLowerCase().startsWith(search) ||
-      beach.district.toLowerCase().startsWith(search)
-    ) {
-      return `${beach.label}, ${beach.district}`;
+    if (beach.label.toLowerCase().startsWith(search)) {
+      return `${beach.label}`;
     } else {
       beaches.splice(beaches.indexOf(beach), 1);
     }
   }
-
   //update query state with user input
   function updateQuery(input) {
     setQuery(input);
-    setBeaches(data.slice());
+    beaches = BEACHES.slice();
   }
 
   //when beach is selected, call ApiService, update state, navigate to beach
   function selectedBeach(item) {
     updateBeach(item);
     navigation.navigate('Beach');
+  }
+
+  function renderItem({ item }) {
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          selectedBeach(item);
+        }}
+      >
+        <Text style={tailwind(style.beachName)}>{filterBeachNames(item)}</Text>
+      </TouchableOpacity>
+    );
+    //return <ItemList item={item} />;
   }
 
   return (
@@ -49,18 +71,7 @@ export function SearchBox({ navigation, updateBeach }) {
         <FlatList
           data={beaches}
           keyExtractor={(i) => i.EUBWID}
-          extraData={query}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() => {
-                selectedBeach(item);
-              }}
-            >
-              <Text style={tailwind(style.beachName)}>
-                {filterBeachNames(item)}
-              </Text>
-            </TouchableOpacity>
-          )}
+          renderItem={renderItem}
         />
       )}
     </View>
