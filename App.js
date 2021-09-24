@@ -131,6 +131,7 @@ export default function App() {
             {(props) => (
               <Favourites
                 component={Favourites}
+                updateBeach={updateBeach}
                 favourites={favourites}
                 {...props}
               />

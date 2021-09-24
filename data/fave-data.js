@@ -1,4 +1,4 @@
-const FAVES = [
+export const FAVES = [
   {
     EUBWID: 'uke2206-07600',
     label: 'Filey',
