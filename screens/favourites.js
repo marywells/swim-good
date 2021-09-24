@@ -5,8 +5,6 @@ import { FaveItem } from '../components/fave-item';
 import { FAVES } from '../data/fave-data';
 
 export function Favourites({ navigation, updateBeach }) {
-  //function, for each element of faves, return a fave item (props)
-
   function renderItem({ item }) {
     return (
       <FaveItem

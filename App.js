@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import tailwind from 'tailwind-rn';
 import moment from 'moment';
 import { Text, View, SafeAreaView, BackHandler } from 'react-native';
@@ -123,6 +123,7 @@ export default function App() {
                 swimConditions={swimConditions}
                 tideTimes={tideTimes}
                 waterQuality={waterQuality}
+                favourites={favourites}
                 clearFields={clearFields}
               />
             )}

@@ -40,19 +40,13 @@ export function SearchBox({ navigation, updateBeach }) {
           lightTheme
           round
           value={state.searchValue}
-          containerStyle={{
-            backgroundColor: 'transparent',
-            border: 'none',
-            borderBottomColor: 'transparent',
-            borderTopColor: 'transparent',
-          }}
-          inputStyle={{ backgroundColor: 'transparent', color: 'white' }}
-          inputContainerStyle={{ backgroundColor: 'transparent' }}
+          containerStyle={containerStyle}
+          inputStyle={inputStyle}
+          inputContainerStyle={inputContainerStyle}
           placeholderTextColor={'#ffffff'}
-          onChangeText={(text) => searchFunction(text)}
+          onChangeText={(t) => searchFunction(t)}
         />
       </View>
-
       {state.searchValue.length > 2 && (
         <FlatList
           data={state.data}
@@ -69,3 +63,13 @@ const style = {
     'bg-white bg-opacity-20 m-4 rounded-xl border border-gray-300 mt-10 ',
   item: 'text-lg p-3 text-white text-center',
 };
+
+//styles specific to react-native-element SearchBar
+const containerStyle = {
+  backgroundColor: 'transparent',
+  border: 'none',
+  borderBottomColor: 'transparent',
+  borderTopColor: 'transparent',
+};
+const inputStyle = { backgroundColor: 'transparent', color: 'white' };
+const inputContainerStyle = { backgroundColor: 'transparent' };
