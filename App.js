@@ -26,7 +26,7 @@ export default function App() {
   function getMarineData(lat, long) {
     // ApiService.marineData(lat, long).then((data) => {
     //   const result = {
-    //     waveHeight: data.hours[0].waveHeight.sg + ' metres',
+    //     waveHeight: data.hours[0].waveHeight.sg + ' m',
     //     swellDir: calcSwellDir(data.hours[0].swellDirection.sg),
     //     windSpeed: data.hours[0].windSpeed.sg + ' m/s',
     //     waterTemp: Math.round(data.hours[0].waterTemperature.sg) + '°C',
@@ -36,9 +36,10 @@ export default function App() {
     // });
 
     setSwimConditions({
-      waveHeight: '1.2 metres',
+      waveHeight: '1.2 m',
       swellDir: calcSwellDir(180),
-      windSpeed: '0.3m/s',
+
+      windSpeed: '0.3 m/s',
       waterTemp: '15°C',
       airTemp: '16°C',
     });
