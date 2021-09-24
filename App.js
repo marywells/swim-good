@@ -9,22 +9,21 @@ import { Beach } from './screens/beach';
 import { Favourites } from './screens/favourites';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as ApiService from './api-service';
-import { calcSwellDir } from './components/interpreters';
+import { calcSwellDir, isFave } from './components/interpreters';
 import { FAVES } from './data/fave-data';
 
 const Stack = createStackNavigator();
 
 export default function App() {
-  const [beachName, setBeachName] = useState('');
+  const [beach, setBeach] = useState('');
   const [swimConditions, setSwimConditions] = useState('');
   const [tideTimes, setTideTimes] = useState('');
-  const [waterQuality, setWaterQuality] = useState('');
   const [favourites, setFaves] = useState(FAVES);
 
   function updateBeach(item) {
     getMarineData(item.lat, item.long);
     getTidalData(item.lat, item.long);
-    updateLocalBeach(item);
+    setBeach(item);
   }
 
   function getMarineData(lat, long) {
@@ -74,24 +73,17 @@ export default function App() {
     });
   }
 
-  function updateLocalBeach(item) {
-    setBeachName(item.label);
-    setWaterQuality({
-      classification: item.classification,
-      swimBan: item.swimBan,
-    });
-  }
-
   function clearFields() {
-    setBeachName('');
+    setBeach({ label: '', classification: '', swimBan: '' });
     setSwimConditions('');
     setTideTimes('');
-    setWaterQuality('');
   }
 
-  function addFavourite(item) {}
-
-  function removeFavourite(item) {}
+  function handleFavourite() {
+    isFave(beach.label, favourites)
+      ? ApiService.removeBeach(beach)
+      : ApiService.addBeach(beach);
+  }
 
   return (
     <SafeAreaView style={tailwind(style.container)}>
@@ -106,11 +98,11 @@ export default function App() {
             {(props) => (
               <Beach
                 component={Beach}
-                beachName={beachName}
+                beach={beach}
                 swimConditions={swimConditions}
                 tideTimes={tideTimes}
-                waterQuality={waterQuality}
                 favourites={favourites}
+                handleFavourite={handleFavourite}
                 clearFields={clearFields}
               />
             )}

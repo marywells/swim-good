@@ -33,3 +33,11 @@ export function tidalData(lat, long) {
     .then((response) => response.json())
     .then((data) => data);
 }
+
+export function addBeach(item) {
+  console.log('added');
+}
+
+export function removeBeach(item) {
+  console.log('removed');
+}

@@ -5,11 +5,11 @@ import { useFocusEffect } from '@react-navigation/native';
 import { BeachDetails } from '../components/beach-details';
 
 export function Beach({
-  beachName,
+  beach,
   swimConditions,
   tideTimes,
-  waterQuality,
   clearFields,
+  handleFavourite,
   favourites,
 }) {
   useFocusEffect(
@@ -29,10 +29,10 @@ export function Beach({
       {swimConditions.waveHeight && (
         <View style={tailwind(style.body)}>
           <BeachDetails
-            beachName={beachName}
+            beach={beach}
             swimConditions={swimConditions}
             tideTimes={tideTimes}
-            waterQuality={waterQuality}
+            handleFavourite={handleFavourite}
             favourites={favourites}
           ></BeachDetails>
         </View>

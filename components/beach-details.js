@@ -1,37 +1,30 @@
 import tailwind from 'tailwind-rn';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import * as interpret from './interpreters';
 
 export function BeachDetails({
-  beachName,
+  beach,
   swimConditions,
   tideTimes,
-  waterQuality,
+  handleFavourite,
   favourites,
 }) {
-  function isFave(name) {
-    for (let i = 0; i < favourites.length; i++) {
-      if (favourites[i].label === name) return true;
-    }
-  }
-
+  const { label, classification, swimBan } = beach;
   return (
     <View>
       {swimConditions.waveHeight && (
         <View style={tailwind(style.body)}>
           <View style={tailwind(style.favourites)}>
-            <Pressable onPress={() => console.log('hello')}>
-              {isFave(beachName) ? (
+            <Pressable onPress={() => handleFavourite()}>
+              {interpret.isFave(label, favourites) ? (
                 <Text style={tailwind(style.addRemove)}>➖</Text>
               ) : (
                 <Text style={tailwind(style.addRemove)}>➕</Text>
               )}
             </Pressable>
           </View>
-          <Text style={tailwind(style.beachName)}>
-            {beachName.toLowerCase()}
-          </Text>
+          <Text style={tailwind(style.beachName)}>{label.toLowerCase()}</Text>
 
           <View style={tailwind(style.keyInfoContainer)}>
             <View>
@@ -77,14 +70,13 @@ export function BeachDetails({
 
           <View style={tailwind(style.waterContainer)}>
             <Text style={tailwind(style.waterText)}>
-              🏊🏽‍♀️ {interpret.rateWaterQuality(waterQuality.classification)} water
-              quality
+              🏊🏽‍♀️ {interpret.rateWaterQuality(classification)} water quality
               {'\n'}
               {'\n'}
-              {interpret.starRating(waterQuality.classification)}
+              {interpret.starRating(classification)}
               {'\n'}
               {'\n'}
-              Pollution Alert: {interpret.pollutionAlert(waterQuality.swimBan)}
+              Pollution Alert: {interpret.pollutionAlert(swimBan)}
             </Text>
           </View>
         </View>

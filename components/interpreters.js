@@ -30,3 +30,9 @@ export function calcSwellDir(angle) {
   ];
   return directions[Math.round(angle / 45) % 8];
 }
+
+export function isFave(name, faves) {
+  for (let i = 0; i < faves.length; i++) {
+    if (faves[i].label === name) return true;
+  }
+}
