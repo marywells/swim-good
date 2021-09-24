@@ -6,8 +6,10 @@ import { Text, View, SafeAreaView, BackHandler } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { Search } from './screens/search';
 import { Beach } from './screens/beach';
+import { Favourites } from './screens/favourites';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as ApiService from './api-service';
+import { FAVES } from './data/fave-data';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +18,7 @@ export default function App() {
   const [swimConditions, setSwimConditions] = useState('');
   const [tideTimes, setTideTimes] = useState('');
   const [waterQuality, setWaterQuality] = useState('');
+  const [favourites, setFaves] = useState(FAVES);
 
   function updateBeach(item) {
     getMarineData(item.lat, item.long);
@@ -121,6 +124,15 @@ export default function App() {
                 tideTimes={tideTimes}
                 waterQuality={waterQuality}
                 clearFields={clearFields}
+              />
+            )}
+          </Stack.Screen>
+          <Stack.Screen name='Favourites'>
+            {(props) => (
+              <Favourites
+                component={Favourites}
+                favourites={favourites}
+                {...props}
               />
             )}
           </Stack.Screen>

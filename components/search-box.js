@@ -2,7 +2,7 @@ import tailwind from 'tailwind-rn';
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import { SearchBar } from 'react-native-elements';
-import { BEACHES } from './testdata';
+import { BEACHES } from '../data/beach-data';
 
 export function SearchBox({ navigation, updateBeach }) {
   const [state, setState] = useState({
@@ -43,6 +43,8 @@ export function SearchBox({ navigation, updateBeach }) {
           containerStyle={{
             backgroundColor: 'transparent',
             border: 'none',
+            borderBottomColor: 'transparent',
+            borderTopColor: 'transparent',
           }}
           inputStyle={{ backgroundColor: 'transparent', color: 'white' }}
           inputContainerStyle={{ backgroundColor: 'transparent' }}
@@ -63,6 +65,7 @@ export function SearchBox({ navigation, updateBeach }) {
 }
 
 const style = {
-  searchBarContainer: 'bg-white bg-opacity-20 mt-10 ',
-  item: 'text-lg p-3 text-white',
+  searchBarContainer:
+    'bg-white bg-opacity-20 m-4 rounded-xl border border-gray-300 mt-10 ',
+  item: 'text-lg p-3 text-white text-center',
 };

@@ -3619,7 +3619,7 @@ export const BEACHES = [
   },
   {
     EUBWID: 'ukk3104-33400',
-    label: 'Widemouth Sand',
+    label: 'Widemouth Bay',
     district: 'Cornwall',
     classification: 4,
     swimBan: false,
