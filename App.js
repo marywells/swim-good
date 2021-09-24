@@ -53,9 +53,12 @@ export default function App() {
     //   for (let i = 0; i < data.length; i++) {
     //     let time = data[i].time.toString();
     //     if (data[i].type === 'high') {
-    //       highs.push(moment(time).format('HH:mm'));
+    //       if (highs.length > 0)
+    //         highs.push(' & ' + moment(time).format('HH:mm'));
+    //       else highs.push(moment(time).format('HH:mm'));
     //     } else if (data[i].type === 'low') {
-    //       lows.push(moment(time).format('HH:mm'));
+    //       if (lows.length > 0) lows.push(' & ' + moment(time).format('HH:mm'));
+    //       else lows.push(moment(time).format('HH:mm'));
     //     }
     //   }
     //   setTideTimes({
@@ -65,7 +68,7 @@ export default function App() {
     // });
 
     setTideTimes({
-      highTides: ['05:09', '17:47'],
+      highTides: ['05:09 & 17:47'],
       lowTides: ['11:48'],
     });
   }

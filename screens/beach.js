@@ -55,6 +55,7 @@ export function Beach({
                 {swimConditions.waveHeight}
               </Text>
             </View>
+
             <View>
               <Text style={tailwind(style.keyInfoTextHeader)}>
                 Swell{'\n'} {swimConditions.swellDir}
@@ -71,18 +72,29 @@ export function Beach({
               {'\n'}⛅ | {swimConditions.airTemp}
             </Text>
           </View>
+
           <View style={tailwind(style.tideContainer)}>
-            <Text style={tailwind(style.tideText)}>
-              High Tides: {tideTimes.highTides}
-              {'\n'}
-              Low Tides: {tideTimes.lowTides}
-            </Text>
+            <View>
+              <Text style={tailwind(style.tideText)}>
+                High Tides{'\n'}
+                {tideTimes.highTides}
+              </Text>
+            </View>
+            <View>
+              <Text style={tailwind(style.tideText)}>
+                Low Tides{'\n'}
+                {tideTimes.lowTides}
+              </Text>
+            </View>
           </View>
+
           <View style={tailwind(style.waterContainer)}>
             <Text style={tailwind(style.waterText)}>
               🏊🏽‍♀️ {rateWaterQuality(waterQuality.classification)} water quality
               {'\n'}
+              {'\n'}
               {starRating(waterQuality.classification)}
+              {'\n'}
               {'\n'}
               Pollution Alert: {pollutionAlert(waterQuality.swimBan)}
             </Text>
@@ -105,8 +117,8 @@ const style = {
     'bg-white bg-opacity-20 p-4 m-3 rounded-xl border border-gray-300',
   tempText: 'font-bold text-white text-lg text-center',
   tideContainer:
-    'bg-white bg-opacity-20 p-4 m-3 rounded-xl border border-gray-300',
-  tideText: 'font-bold text-white',
+    'bg-white bg-opacity-20 p-4 m-3 rounded-xl border border-gray-300 flex-row justify-around',
+  tideText: 'font-bold text-white text-center',
   waterContainer:
     'bg-white bg-opacity-20 p-4 m-3 rounded-xl border border-gray-300',
   waterText: 'font-bold text-white text-center',
