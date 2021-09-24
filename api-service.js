@@ -1,6 +1,8 @@
 import { REACT_APP_API_KEY } from '@env';
 import moment from 'moment';
+
 const apiKey = REACT_APP_API_KEY;
+const serverURL = ''; //TO ADD
 
 const current = moment().add(1, 'hour').unix();
 const today = moment().format('YYYY-MM-DD');
@@ -34,10 +36,32 @@ export function tidalData(lat, long) {
     .then((data) => data);
 }
 
-export function addBeach(item) {
-  console.log('added');
+export function getFavourites() {
+  return fetch(`${serverURL}`)
+    .then((response) => response.json())
+    .then((data) => data);
 }
 
-export function removeBeach(item) {
+export function addBeach(item) {
+  console.log('added');
+  const { EUBWID, label, district, classification, swimBan, lat, long } = item;
+  console.log(EUBWID);
+  return fetch(`${serverURL}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      EUBWID,
+      label,
+      district,
+      classification,
+      swimBan,
+      lat,
+      long,
+    }),
+  });
+}
+
+export function removeBeach(ID) {
+  //DELETE request
   console.log('removed');
 }

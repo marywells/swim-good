@@ -15,15 +15,15 @@ export function BeachDetails({
     <View>
       {swimConditions.waveHeight && (
         <View style={tailwind(style.body)}>
-          <View style={tailwind(style.favourites)}>
-            <Pressable onPress={() => handleFavourite()}>
+          <Pressable onPress={() => handleFavourite()}>
+            <View style={tailwind(style.favourites)}>
               {interpret.isFave(label, favourites) ? (
                 <Text style={tailwind(style.addRemove)}>➖</Text>
               ) : (
                 <Text style={tailwind(style.addRemove)}>➕</Text>
               )}
-            </Pressable>
-          </View>
+            </View>
+          </Pressable>
           <Text style={tailwind(style.beachName)}>{label.toLowerCase()}</Text>
 
           <View style={tailwind(style.keyInfoContainer)}>

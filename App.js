@@ -20,6 +20,14 @@ export default function App() {
   const [tideTimes, setTideTimes] = useState('');
   const [favourites, setFaves] = useState(FAVES);
 
+  //useEffect --> updateFavourites()
+
+  function updateFavourites() {
+    //call GET to server
+    //handle response
+    //setFaves() to response array
+  }
+
   function updateBeach(item) {
     getMarineData(item.lat, item.long);
     getTidalData(item.lat, item.long);
@@ -77,12 +85,14 @@ export default function App() {
     setBeach({ label: '', classification: '', swimBan: '' });
     setSwimConditions('');
     setTideTimes('');
+    updateFavourites();
   }
 
   function handleFavourite() {
     isFave(beach.label, favourites)
-      ? ApiService.removeBeach(beach)
+      ? ApiService.removeBeach(beach.EUBWID)
       : ApiService.addBeach(beach);
+    updateFavourites();
   }
 
   return (
