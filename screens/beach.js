@@ -25,32 +25,39 @@ export function Beach({
   return (
     <View>
       {swimConditions.waveHeight && (
-        <View>
-          <Text style={tailwind(style.beachName)}>{beachName}</Text>
-          <Text style={tailwind(style.keyInfo)}>
-            <br></br>
-            Waves: {swimConditions.waveHeight}
-            <br></br>
-            Swell {swimConditions.swellDir}
-            <br></br>
-            Speed: {swimConditions.windSpeed}
+        <View style={tailwind(style.body)}>
+          <Text style={tailwind(style.beachName)}>
+            {beachName.toLowerCase()}
           </Text>
-          <br></br>
-          <Text style={tailwind(style.temperatues)}>
-            Water Temp: {swimConditions.waterTemp}
-            <br></br>
-            Air Temp: {swimConditions.airTemp}
-          </Text>
-          <br></br>
-          <Text style={tailwind(style.tides)}>
-            High Tides: {tideTimes.highTides} <br></br>
-            Low Tides: {tideTimes.lowTides}
-          </Text>
-          <br></br>
-          <Text style={tailwind(style.waterQuality)}>
-            Water Quality: {waterQuality.classification} out of 5 <br></br>
-            Swim Ban? {waterQuality.swimBan.toString()}
-          </Text>
+          <View style={tailwind(style.keyInfoContainer)}>
+            <Text style={tailwind(style.keyInfoText)}>
+              Waves: {swimConditions.waveHeight}
+              {'\n'}
+              Swell {swimConditions.swellDir}
+              {'\n'}
+              Speed: {swimConditions.windSpeed}
+            </Text>
+          </View>
+          <View style={tailwind(style.tempContainer)}>
+            <Text style={tailwind(style.tempText)}>
+              Water: {swimConditions.waterTemp}
+              {'\n'}
+              Air: {swimConditions.airTemp}
+            </Text>
+          </View>
+          <View style={tailwind(style.tideContainer)}>
+            <Text style={tailwind(style.tideText)}>
+              High Tides: {tideTimes.highTides}
+              {'\n'}
+              Low Tides: {tideTimes.lowTides}
+            </Text>
+          </View>
+          <View style={tailwind(style.waterContainer)}>
+            <Text style={tailwind(style.waterText)}>
+              Water Quality: {waterQuality.classification} out of 5 stars{'\n'}
+              Swim Ban? {waterQuality.swimBan.toString()}
+            </Text>
+          </View>
         </View>
       )}
     </View>
@@ -58,9 +65,19 @@ export function Beach({
 }
 
 const style = {
-  beachName: 'text-xl font-bold',
-  keyInfo: 'text-xl',
-  temperatures: 'font-bold',
-  tides: 'text-blue-300',
-  waterQuality: 'text-red-600',
+  body: 'bg-blue-600 h-full',
+  beachName:
+    'bg-white bg-opacity-20 p-4 m-3 rounded-xl border border-gray-300 text-4xl font-bold text-white ',
+  keyInfoContainer:
+    'bg-white bg-opacity-20 p-4 m-3 rounded-xl border border-gray-300',
+  keyInfoText: 'text-xl text-white',
+  tempContainer:
+    'bg-white bg-opacity-20 p-4 m-3 rounded-xl border border-gray-300',
+  tempText: 'font-bold text-white',
+  tideContainer:
+    'bg-white bg-opacity-20 p-4 m-3 rounded-xl border border-gray-300',
+  tideText: 'font-bold text-blue-300',
+  waterContainer:
+    'bg-white bg-opacity-20 p-4 m-3 rounded-xl border border-gray-300',
+  waterText: 'font-bold text-blue-300',
 };
