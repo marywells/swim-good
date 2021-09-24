@@ -1,6 +1,6 @@
 import tailwind from 'tailwind-rn';
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import * as interpret from './interpreters';
 
 export function BeachDetails({
@@ -20,10 +20,18 @@ export function BeachDetails({
     <View>
       {swimConditions.waveHeight && (
         <View style={tailwind(style.body)}>
+          <View style={tailwind(style.favourites)}>
+            <Pressable onPress={() => console.log('hello')}>
+              {isFave(beachName) ? (
+                <Text style={tailwind(style.addRemove)}>➖</Text>
+              ) : (
+                <Text style={tailwind(style.addRemove)}>➕</Text>
+              )}
+            </Pressable>
+          </View>
           <Text style={tailwind(style.beachName)}>
             {beachName.toLowerCase()}
           </Text>
-          {isFave(beachName) ? <Text>remove</Text> : <Text>add</Text>}
 
           <View style={tailwind(style.keyInfoContainer)}>
             <View>
@@ -102,4 +110,5 @@ const style = {
   waterContainer:
     'bg-white bg-opacity-20 p-4 m-3 rounded-xl border border-gray-300',
   waterText: 'font-bold text-white text-center',
+  addRemove: 'justify-center absolute top-8 right-6 text-lg',
 };

@@ -9,6 +9,7 @@ import { Beach } from './screens/beach';
 import { Favourites } from './screens/favourites';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as ApiService from './api-service';
+import { calcSwellDir } from './components/interpreters';
 import { FAVES } from './data/fave-data';
 
 const Stack = createStackNavigator();
@@ -54,14 +55,11 @@ export default function App() {
     //   let highs = [];
     //   let lows = [];
     //   for (let i = 0; i < data.length; i++) {
-    //     let time = data[i].time.toString();
+    //     let time = moment(data[i].time.toString()).format('HH:mm');
     //     if (data[i].type === 'high') {
-    //       if (highs.length > 0)
-    //         highs.push(' & ' + moment(time).format('HH:mm'));
-    //       else highs.push(moment(time).format('HH:mm'));
+    //       highs.length > 0 ? highs.push(' & ' + time) : highs.push(time);
     //     } else if (data[i].type === 'low') {
-    //       if (lows.length > 0) lows.push(' & ' + moment(time).format('HH:mm'));
-    //       else lows.push(moment(time).format('HH:mm'));
+    //       lows.length > 0 ? lows.push(' & ' + time) : lows.push(time);
     //     }
     //   }
     //   setTideTimes({
@@ -84,27 +82,16 @@ export default function App() {
     });
   }
 
-  function calcSwellDir(angle) {
-    const directions = [
-      '↑ N',
-      '↗ NE',
-      '→ E',
-      '↘ SE',
-      '↓ S',
-      '↙ SW',
-      '← W',
-      '↖ NW',
-    ];
-    return directions[Math.round(angle / 45) % 8];
-  }
-
   function clearFields() {
     setBeachName('');
     setSwimConditions('');
     setTideTimes('');
     setWaterQuality('');
-    console.log('clearing!');
   }
+
+  function addFavourite(item) {}
+
+  function removeFavourite(item) {}
 
   return (
     <SafeAreaView style={tailwind(style.container)}>

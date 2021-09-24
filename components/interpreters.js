@@ -16,3 +16,17 @@ export function pollutionAlert(bool) {
   if (bool === true) return '🚫 Advise against bathing';
   if (bool === false) return '✔️ Safe to swim';
 }
+
+export function calcSwellDir(angle) {
+  const directions = [
+    '↑ N',
+    '↗ NE',
+    '→ E',
+    '↘ SE',
+    '↓ S',
+    '↙ SW',
+    '← W',
+    '↖ NW',
+  ];
+  return directions[Math.round(angle / 45) % 8];
+}

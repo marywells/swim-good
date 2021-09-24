@@ -25,6 +25,7 @@ export function SearchBox({ navigation, updateBeach }) {
         onPress={() => {
           updateBeach(item);
           navigation.navigate('Beach');
+          setState({ searchValue: '' });
         }}
       >
         <Text style={tailwind(style.item)}>{item.label}</Text>
