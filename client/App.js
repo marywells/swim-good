@@ -10,7 +10,6 @@ import { Favourites } from './screens/favourites';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as ApiService from './api-service';
 import { calcSwellDir } from './components/interpreters';
-import { FAVES } from './data/fave-data';
 
 const Stack = createStackNavigator();
 
@@ -26,7 +25,6 @@ export default function App() {
 
   function updateFavourites() {
     ApiService.getFavourites().then((data) => {
-      console.log(data);
       setFaves(data);
     });
   }
@@ -92,10 +90,11 @@ export default function App() {
   }
 
   function isFavourite(bool) {
-    bool === true
-      ? ApiService.removeBeach(beach.EUBWID)
-      : ApiService.addBeach(beach);
-    updateFavourites();
+    if (bool) {
+      ApiService.removeBeach(beach.EUBWID).then(() => updateFavourites());
+    } else {
+      ApiService.addBeach(beach).then(() => updateFavourites());
+    }
   }
 
   return (

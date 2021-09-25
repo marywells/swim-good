@@ -45,8 +45,7 @@ export function getFavourites() {
 export function addBeach(item) {
   console.log('added');
   const { EUBWID, label, district, classification, swimBan, lat, long } = item;
-  console.log(EUBWID);
-  return fetch(`${serverURL}`, {
+  return fetch(`${serverURL}/post`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -61,7 +60,14 @@ export function addBeach(item) {
   });
 }
 
-export function removeBeach(ID) {
+export function removeBeach(EUBWID) {
   //DELETE request
   console.log('removed');
+  return fetch(`${serverURL}/delete`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      EUBWID,
+    }),
+  });
 }
