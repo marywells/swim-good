@@ -88,8 +88,8 @@ export default function App() {
     updateFavourites();
   }
 
-  function handleFavourite() {
-    isFave(beach.label, favourites)
+  function isFavourite(bool) {
+    bool === true
       ? ApiService.removeBeach(beach.EUBWID)
       : ApiService.addBeach(beach);
     updateFavourites();
@@ -112,7 +112,7 @@ export default function App() {
                 swimConditions={swimConditions}
                 tideTimes={tideTimes}
                 favourites={favourites}
-                handleFavourite={handleFavourite}
+                isFavourite={isFavourite}
                 clearFields={clearFields}
               />
             )}

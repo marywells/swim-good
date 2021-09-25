@@ -7,7 +7,7 @@ export function BeachDetails({
   beach,
   swimConditions,
   tideTimes,
-  handleFavourite,
+  isFavourite,
   favourites,
 }) {
   const { label, classification, swimBan } = beach;
@@ -15,15 +15,18 @@ export function BeachDetails({
     <View>
       {swimConditions.waveHeight && (
         <View style={tailwind(style.body)}>
-          <Pressable onPress={() => handleFavourite()}>
-            <View style={tailwind(style.favourites)}>
-              {interpret.isFave(label, favourites) ? (
+          <View style={tailwind(style.favourites)}>
+            {interpret.isFave(label, favourites) ? (
+              <Pressable onPress={() => isFavourite(true)}>
                 <Text style={tailwind(style.addRemove)}>➖</Text>
-              ) : (
+              </Pressable>
+            ) : (
+              <Pressable onPress={() => isFavourite(false)}>
                 <Text style={tailwind(style.addRemove)}>➕</Text>
-              )}
-            </View>
-          </Pressable>
+              </Pressable>
+            )}
+          </View>
+
           <Text style={tailwind(style.beachName)}>{label.toLowerCase()}</Text>
 
           <View style={tailwind(style.keyInfoContainer)}>

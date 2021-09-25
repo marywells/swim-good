@@ -9,7 +9,7 @@ export function Beach({
   swimConditions,
   tideTimes,
   clearFields,
-  handleFavourite,
+  isFavourite,
   favourites,
 }) {
   useFocusEffect(
@@ -32,7 +32,7 @@ export function Beach({
             beach={beach}
             swimConditions={swimConditions}
             tideTimes={tideTimes}
-            handleFavourite={handleFavourite}
+            isFavourite={isFavourite}
             favourites={favourites}
           ></BeachDetails>
         </View>
