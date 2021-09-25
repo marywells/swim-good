@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Search } from './screens/search';
 import { Beach } from './screens/beach';
 import { Favourites } from './screens/favourites';
+import { Explore } from './screens/explore';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as ApiService from './api-service';
 import { calcSwellDir } from './components/interpreters';
@@ -22,7 +23,7 @@ export default function App() {
   useEffect(() => {
     updateFavourites();
   }, []);
-  const test = 'mary';
+
   function updateFavourites() {
     ApiService.getFavourites().then((data) => {
       setFaves(data);
@@ -125,6 +126,15 @@ export default function App() {
                 component={Favourites}
                 updateBeach={updateBeach}
                 favourites={favourites}
+                {...props}
+              />
+            )}
+          </Stack.Screen>
+          <Stack.Screen name='Explore'>
+            {(props) => (
+              <Explore
+                component={Explore}
+                updateBeach={updateBeach}
                 {...props}
               />
             )}
