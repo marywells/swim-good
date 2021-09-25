@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import tailwind from 'tailwind-rn';
 import moment from 'moment';
 import { Text, View, SafeAreaView, BackHandler } from 'react-native';
@@ -9,7 +9,7 @@ import { Beach } from './screens/beach';
 import { Favourites } from './screens/favourites';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as ApiService from './api-service';
-import { calcSwellDir, isFave } from './components/interpreters';
+import { calcSwellDir } from './components/interpreters';
 import { FAVES } from './data/fave-data';
 
 const Stack = createStackNavigator();
@@ -18,14 +18,17 @@ export default function App() {
   const [beach, setBeach] = useState('');
   const [swimConditions, setSwimConditions] = useState('');
   const [tideTimes, setTideTimes] = useState('');
-  const [favourites, setFaves] = useState(FAVES);
+  const [favourites, setFaves] = useState([]);
 
-  //useEffect --> updateFavourites()
+  useEffect(() => {
+    updateFavourites();
+  }, []);
 
   function updateFavourites() {
-    //call GET to server
-    //handle response
-    //setFaves() to response array
+    ApiService.getFavourites().then((data) => {
+      console.log(data);
+      setFaves(data);
+    });
   }
 
   function updateBeach(item) {

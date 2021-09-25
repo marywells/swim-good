@@ -2,9 +2,8 @@ import tailwind from 'tailwind-rn';
 import React from 'react';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import { FaveItem } from '../components/fave-item';
-import { FAVES } from '../data/fave-data';
 
-export function Favourites({ navigation, updateBeach }) {
+export function Favourites({ navigation, updateBeach, favourites }) {
   function renderItem({ item }) {
     return (
       <FaveItem
@@ -20,7 +19,7 @@ export function Favourites({ navigation, updateBeach }) {
         <Text style={tailwind(style.favourites)}>favourites</Text>
 
         <FlatList
-          data={FAVES}
+          data={favourites}
           renderItem={renderItem}
           keyExtractor={(item) => item.EUBWID}
         />

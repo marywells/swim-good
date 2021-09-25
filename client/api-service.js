@@ -2,7 +2,7 @@ import { REACT_APP_API_KEY } from '@env';
 import moment from 'moment';
 
 const apiKey = REACT_APP_API_KEY;
-const serverURL = ''; //TO ADD
+const serverURL = 'http://localhost:4000';
 
 const current = moment().add(1, 'hour').unix();
 const today = moment().format('YYYY-MM-DD');
@@ -37,7 +37,7 @@ export function tidalData(lat, long) {
 }
 
 export function getFavourites() {
-  return fetch(`${serverURL}`)
+  return fetch(`${serverURL}/get`)
     .then((response) => response.json())
     .then((data) => data);
 }
