@@ -22,7 +22,7 @@ export default function App() {
   useEffect(() => {
     updateFavourites();
   }, []);
-
+  const test = 'mary';
   function updateFavourites() {
     ApiService.getFavourites().then((data) => {
       setFaves(data);
