@@ -1,6 +1,6 @@
 import tailwind from 'tailwind-rn';
-import React, { useEffect } from 'react';
-import { View, Text, Pressable } from 'react-native';
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
 import * as interpret from './interpreters';
 
 export function BeachDetails({
@@ -15,19 +15,21 @@ export function BeachDetails({
     <View>
       {swimConditions.waveHeight && (
         <View style={tailwind(style.body)}>
-          <View style={tailwind(style.favourites)}>
-            {interpret.isFave(label, favourites) ? (
-              <Pressable onPress={() => isFavourite(true)}>
-                <Text style={tailwind(style.addRemove)}>➖</Text>
-              </Pressable>
-            ) : (
-              <Pressable onPress={() => isFavourite(false)}>
-                <Text style={tailwind(style.addRemove)}>➕</Text>
-              </Pressable>
-            )}
-          </View>
-
           <Text style={tailwind(style.beachName)}>{label.toLowerCase()}</Text>
+
+          {interpret.isFave(label, favourites) ? (
+            <View style={tailwind(style.tempContainer)}>
+              <TouchableOpacity onPress={() => isFavourite(true)}>
+                <Text style={tailwind(style.tempText)}>➖</Text>
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <View style={tailwind(style.tempContainer)}>
+              <TouchableOpacity onPress={() => isFavourite(false)}>
+                <Text style={tailwind(style.tempText)}>➕</Text>
+              </TouchableOpacity>
+            </View>
+          )}
 
           <View style={tailwind(style.keyInfoContainer)}>
             <View>
@@ -105,5 +107,5 @@ const style = {
   waterContainer:
     'bg-white bg-opacity-20 p-4 m-3 rounded-xl border border-gray-300',
   waterText: 'font-bold text-white text-center',
-  addRemove: 'justify-center absolute top-8 right-6 text-lg',
+  addRemove: 'justify-center absolute top-8 right-6 text-lg ',
 };

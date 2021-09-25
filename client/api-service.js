@@ -2,7 +2,7 @@ import { REACT_APP_API_KEY } from '@env';
 import moment from 'moment';
 
 const apiKey = REACT_APP_API_KEY;
-const serverURL = 'http://localhost:4000';
+const serverURL = 'http://10.10.22.215:4000';
 
 const current = moment().add(1, 'hour').unix();
 const today = moment().format('YYYY-MM-DD');
