@@ -12,7 +12,7 @@ export function SearchBox({ navigation, updateBeach }) {
 
   function searchFunction(text) {
     const updatedData = BEACHES.filter((item) => {
-      const target = `${item.label.toLowerCase()})`;
+      const target = `${item.label.toLowerCase()}), ${item.district.toLowerCase()})`;
       const input = text.toLowerCase();
       return target.indexOf(input) > -1;
     });
@@ -28,7 +28,9 @@ export function SearchBox({ navigation, updateBeach }) {
           setState({ searchValue: '' });
         }}
       >
-        <Text style={tailwind(style.item)}>{item.label}</Text>
+        <Text style={tailwind(style.item)}>
+          {item.label}, {item.district}
+        </Text>
       </TouchableOpacity>
     );
   }
@@ -61,7 +63,7 @@ export function SearchBox({ navigation, updateBeach }) {
 
 const style = {
   searchBarContainer:
-    'bg-white bg-opacity-20 m-4 rounded-xl border border-gray-300 mt-10 ',
+    'bg-white bg-opacity-20 m-4 rounded-3xl border border-gray-300 mt-10 ',
   item: 'text-lg p-3 text-white text-center',
 };
 

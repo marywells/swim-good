@@ -15,7 +15,12 @@ export function Explore({ navigation, updateBeach }) {
 
   return (
     <View style={tailwind(style.body)}>
-      <MapView style={{ flex: 1 }} minPoints={3} initialRegion={INITIAL_REGION}>
+      <MapView
+        style={{ flex: 1 }}
+        minPoints={3}
+        initialRegion={INITIAL_REGION}
+        clusterColor={'navy'}
+      >
         {BEACHES.map((beach) => (
           <Marker
             key={beach.EUBWID}

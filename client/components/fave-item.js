@@ -21,6 +21,6 @@ export function FaveItem({ navigation, updateBeach, item }) {
 
 const style = {
   favouriteContainer:
-    'bg-white bg-opacity-20 p-4 m-3 rounded-xl border border-gray-300 flex-row justify-around',
+    'bg-white bg-opacity-20 p-4 m-3 rounded-3xl border border-gray-300 flex-row justify-around',
   favouriteData: 'text-xl text-white font-bold text-center',
 };

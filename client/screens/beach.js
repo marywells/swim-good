@@ -10,8 +10,9 @@ export function Beach({
   swimConditions,
   tideTimes,
   clearFields,
-  isFavourite,
   favourites,
+  isFavourite,
+  isLoading,
 }) {
   useFocusEffect(
     React.useCallback(() => {
@@ -31,8 +32,10 @@ export function Beach({
         colors={['#05545C', 'transparent']}
         style={tailwind(style.body)}
       >
-        {swimConditions.waveHeight ? (
-          <View>
+        <View>
+          {isLoading ? (
+            <Text>loading!</Text>
+          ) : (
             <BeachDetails
               beach={beach}
               swimConditions={swimConditions}
@@ -40,10 +43,8 @@ export function Beach({
               isFavourite={isFavourite}
               favourites={favourites}
             ></BeachDetails>
-          </View>
-        ) : (
-          <Text style={tailwind(style.choose)}>Choose a beach</Text>
-        )}
+          )}
+        </View>
       </LinearGradient>
     </View>
   );

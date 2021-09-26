@@ -34,5 +34,5 @@ export function Favourites({ navigation, updateBeach, favourites }) {
 const style = {
   body: 'h-full',
   favourites:
-    'bg-white bg-opacity-20 p-4 m-3 rounded-xl border border-gray-300 text-4xl font-bold text-white  text-center',
+    'p-1 pt-5 m-3 rounded-xl text-4xl font-bold text-white text-center',
 };

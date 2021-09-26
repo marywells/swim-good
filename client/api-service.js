@@ -43,7 +43,6 @@ export function getFavourites() {
 }
 
 export function addBeach(item) {
-  console.log('added');
   const { EUBWID, label, district, classification, swimBan, lat, long } = item;
   return fetch(`${serverURL}/post`, {
     method: 'POST',
@@ -61,8 +60,6 @@ export function addBeach(item) {
 }
 
 export function removeBeach(EUBWID) {
-  //DELETE request
-  console.log('removed');
   return fetch(`${serverURL}/delete`, {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' },

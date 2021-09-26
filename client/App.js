@@ -20,6 +20,7 @@ export default function App() {
   const [swimConditions, setSwimConditions] = useState('');
   const [tideTimes, setTideTimes] = useState('');
   const [favourites, setFaves] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     updateFavourites();
@@ -32,6 +33,7 @@ export default function App() {
   }
 
   function updateBeach(item) {
+    setIsLoading(true);
     getMarineData(item.lat, item.long);
     getTidalData(item.lat, item.long);
     setBeach(item);
@@ -47,6 +49,7 @@ export default function App() {
     //     airTemp: Math.round(data.hours[0].airTemperature.sg) + '°C',
     //   };
     //   setSwimConditions(result);
+    //   setIsLoading(false);
     // });
 
     setSwimConditions({
@@ -57,6 +60,7 @@ export default function App() {
       waterTemp: '15°C',
       airTemp: '16°C',
     });
+    setIsLoading(false);
   }
 
   function getTidalData(lat, long) {
@@ -137,6 +141,7 @@ export default function App() {
                 tideTimes={tideTimes}
                 favourites={favourites}
                 isFavourite={isFavourite}
+                isLoading={isLoading}
                 clearFields={clearFields}
               />
             )}
