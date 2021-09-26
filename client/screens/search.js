@@ -1,8 +1,7 @@
 import tailwind from 'tailwind-rn';
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
 import { SearchBox } from '../components/search-box';
-import MapView from 'react-native-maps';
 
 export function Search({ navigation, updateBeach }) {
   return (
@@ -13,16 +12,6 @@ export function Search({ navigation, updateBeach }) {
           navigation={navigation}
           updateBeach={updateBeach}
         />
-      </View>
-      <View style={tailwind(style.favourites)}>
-        <TouchableOpacity onPress={() => navigation.navigate('Favourites')}>
-          <Text style={tailwind(style.tabText)}>❤</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={tailwind(style.explore)}>
-        <TouchableOpacity onPress={() => navigation.navigate('Explore')}>
-          <Text style={tailwind(style.tabText)}>🗺️</Text>
-        </TouchableOpacity>
       </View>
     </View>
   );

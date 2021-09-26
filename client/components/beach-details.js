@@ -77,9 +77,7 @@ export function BeachDetails({
             <Text style={tailwind(style.waterText)}>
               🏊🏽‍♀️ {interpret.rateWaterQuality(classification)} water quality
               {'\n'}
-              {'\n'}
               {interpret.starRating(classification)}
-              {'\n'}
               {'\n'}
               Pollution Alert: {interpret.pollutionAlert(swimBan)}
             </Text>

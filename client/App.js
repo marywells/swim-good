@@ -2,17 +2,18 @@ import 'react-native-gesture-handler';
 import React, { useState, useEffect } from 'react';
 import tailwind from 'tailwind-rn';
 import moment from 'moment';
-import { Text, View, SafeAreaView, BackHandler } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { Search } from './screens/search';
 import { Beach } from './screens/beach';
 import { Favourites } from './screens/favourites';
 import { Explore } from './screens/explore';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
 import * as ApiService from './api-service';
 import { calcSwellDir } from './components/interpreters';
 
-const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [beach, setBeach] = useState('');
@@ -100,14 +101,34 @@ export default function App() {
 
   return (
     <SafeAreaView style={tailwind(style.container)}>
-      <NavigationContainer style={tailwind(style.nav)}>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name='Search'>
+      <NavigationContainer>
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName;
+
+              if (route.name === 'Search') {
+                iconName = focused ? 'search' : 'search';
+              } else if (route.name === 'Beach') {
+                iconName = focused ? 'water-outline' : 'water-outline';
+              } else if (route.name === 'Favourites') {
+                iconName = focused ? 'star-outline' : 'star-outline';
+              } else if (route.name === 'Explore') {
+                iconName = focused ? 'location-outline' : 'location-outline';
+              }
+              return <Ionicons name={iconName} size={size} color={color} />;
+            },
+            tabBarActiveTintColor: '#29b6f6',
+            tabBarInactiveTintColor: 'gray',
+            headerShown: false,
+          })}
+        >
+          <Tab.Screen name='Search'>
             {(props) => (
               <Search component={Search} updateBeach={updateBeach} {...props} />
             )}
-          </Stack.Screen>
-          <Stack.Screen name='Beach'>
+          </Tab.Screen>
+          <Tab.Screen name='Beach'>
             {(props) => (
               <Beach
                 component={Beach}
@@ -119,8 +140,8 @@ export default function App() {
                 clearFields={clearFields}
               />
             )}
-          </Stack.Screen>
-          <Stack.Screen name='Favourites'>
+          </Tab.Screen>
+          <Tab.Screen name='Favourites'>
             {(props) => (
               <Favourites
                 component={Favourites}
@@ -129,8 +150,9 @@ export default function App() {
                 {...props}
               />
             )}
-          </Stack.Screen>
-          <Stack.Screen name='Explore'>
+          </Tab.Screen>
+
+          <Tab.Screen name='Explore'>
             {(props) => (
               <Explore
                 component={Explore}
@@ -138,13 +160,13 @@ export default function App() {
                 {...props}
               />
             )}
-          </Stack.Screen>
-        </Stack.Navigator>
+          </Tab.Screen>
+        </Tab.Navigator>
       </NavigationContainer>
     </SafeAreaView>
   );
 }
 
 const style = {
-  container: 'flex-1 pt-7',
+  container: 'flex-1 pt-6',
 };
