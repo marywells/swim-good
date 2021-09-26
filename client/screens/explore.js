@@ -7,25 +7,20 @@ import { Marker, Callout } from 'react-native-maps';
 
 export function Explore({ navigation, updateBeach }) {
   const INITIAL_REGION = {
-    latitude: 51.38770455,
-    longitude: 1.37575226,
-    latitudeDelta: 0.5,
-    longitudeDelta: 0.5,
+    latitude: 51.509865,
+    longitude: -0.118092,
+    latitudeDelta: 2,
+    longitudeDelta: 2,
   };
 
   return (
     <View style={tailwind(style.body)}>
-      <MapView
-        style={{ flex: 1 }}
-        minPoints={3}
-        clusterColor={'#29b6f6'}
-        initialRegion={INITIAL_REGION}
-      >
+      <MapView style={{ flex: 1 }} minPoints={3} initialRegion={INITIAL_REGION}>
         {BEACHES.map((beach) => (
           <Marker
             key={beach.EUBWID}
             coordinate={{ latitude: beach.lat, longitude: beach.long }}
-            pinColor={beach.swimBan === true ? '#ef5350' : '#29b6f6'}
+            pinColor={beach.swimBan === true ? 'tomato' : 'navy'}
           >
             <Callout
               style={tailwind(style.callout)}
@@ -52,7 +47,7 @@ export function Explore({ navigation, updateBeach }) {
 }
 
 const style = {
-  body: 'bg-blue-400 h-full',
+  body: 'bg-white h-full',
   calloutBeach: 'font-bold text-center',
   calloutSwim: 'font-thin text-center',
 };

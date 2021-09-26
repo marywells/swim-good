@@ -118,7 +118,7 @@ export default function App() {
               }
               return <Ionicons name={iconName} size={size} color={color} />;
             },
-            tabBarActiveTintColor: '#29b6f6',
+            tabBarActiveTintColor: '#077A87',
             tabBarInactiveTintColor: 'gray',
             headerShown: false,
           })}

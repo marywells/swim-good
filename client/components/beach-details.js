@@ -11,85 +11,75 @@ export function BeachDetails({
   favourites,
 }) {
   const { label, classification, swimBan } = beach;
+
   return (
     <View>
-      {swimConditions.waveHeight && (
-        <View style={tailwind(style.body)}>
-          <Text style={tailwind(style.beachName)}>{label.toLowerCase()}</Text>
-
-          {interpret.isFave(label, favourites) ? (
-            <View style={tailwind(style.tempContainer)}>
-              <TouchableOpacity onPress={() => isFavourite(true)}>
-                <Text style={tailwind(style.tempText)}>➖</Text>
-              </TouchableOpacity>
-            </View>
-          ) : (
-            <View style={tailwind(style.tempContainer)}>
-              <TouchableOpacity onPress={() => isFavourite(false)}>
-                <Text style={tailwind(style.tempText)}>➕</Text>
-              </TouchableOpacity>
-            </View>
-          )}
-
-          <View style={tailwind(style.keyInfoContainer)}>
-            <View>
-              <Text style={tailwind(style.keyInfoTextHeader)}>
-                Waves{'\n'} 🌊
-              </Text>
-              <Text style={tailwind(style.keyInfoText)}>
-                {swimConditions.waveHeight}
-              </Text>
-            </View>
-
-            <View>
-              <Text style={tailwind(style.keyInfoTextHeader)}>
-                Swell{'\n'} {swimConditions.swellDir}
-              </Text>
-              <Text style={tailwind(style.keyInfoText)}>
-                {swimConditions.windSpeed}
-              </Text>
-            </View>
-          </View>
-
-          <View style={tailwind(style.tempContainer)}>
-            <Text style={tailwind(style.tempText)}>
-              💧 | {swimConditions.waterTemp}
-              {'\n'}⛅ | {swimConditions.airTemp}
-            </Text>
-          </View>
-
-          <View style={tailwind(style.tideContainer)}>
-            <View>
-              <Text style={tailwind(style.tideText)}>
-                High Tides{'\n'}
-                {tideTimes.highTides}
-              </Text>
-            </View>
-            <View>
-              <Text style={tailwind(style.tideText)}>
-                Low Tides{'\n'}
-                {tideTimes.lowTides}
-              </Text>
-            </View>
-          </View>
-
-          <View style={tailwind(style.waterContainer)}>
-            <Text style={tailwind(style.waterText)}>
-              🏊🏽‍♀️ {interpret.rateWaterQuality(classification)} water quality
-              {'\n'}
-              {interpret.starRating(classification)}
-              {'\n'}
-              Pollution Alert: {interpret.pollutionAlert(swimBan)}
-            </Text>
-          </View>
+      <Text style={tailwind(style.beachName)}>{label}</Text>
+      {interpret.isFave(label, favourites) ? (
+        <View style={tailwind(style.tempContainer)}>
+          <TouchableOpacity onPress={() => isFavourite(true)}>
+            <Text style={tailwind(style.tempText)}>➖</Text>
+          </TouchableOpacity>
+        </View>
+      ) : (
+        <View style={tailwind(style.tempContainer)}>
+          <TouchableOpacity onPress={() => isFavourite(false)}>
+            <Text style={tailwind(style.tempText)}>➕</Text>
+          </TouchableOpacity>
         </View>
       )}
+      <View style={tailwind(style.keyInfoContainer)}>
+        <View>
+          <Text style={tailwind(style.keyInfoTextHeader)}>Waves{'\n'} 🌊</Text>
+          <Text style={tailwind(style.keyInfoText)}>
+            {swimConditions.waveHeight}
+          </Text>
+        </View>
+
+        <View>
+          <Text style={tailwind(style.keyInfoTextHeader)}>
+            Swell{'\n'} {swimConditions.swellDir}
+          </Text>
+          <Text style={tailwind(style.keyInfoText)}>
+            {swimConditions.windSpeed}
+          </Text>
+        </View>
+      </View>
+      <View style={tailwind(style.tempContainer)}>
+        <Text style={tailwind(style.tempText)}>
+          💧 | {swimConditions.waterTemp}
+          {'\n'}⛅ | {swimConditions.airTemp}
+        </Text>
+      </View>
+      <View style={tailwind(style.tideContainer)}>
+        <View>
+          <Text style={tailwind(style.tideText)}>
+            High Tides{'\n'}
+            {tideTimes.highTides}
+          </Text>
+        </View>
+        <View>
+          <Text style={tailwind(style.tideText)}>
+            Low Tides{'\n'}
+            {tideTimes.lowTides}
+          </Text>
+        </View>
+      </View>
+      <View style={tailwind(style.waterContainer)}>
+        <Text style={tailwind(style.waterText)}>
+          🏊🏽‍♀️ {interpret.rateWaterQuality(classification)} water quality
+          {'\n'}
+          {interpret.starRating(classification)}
+          {'\n'}
+          Pollution Alert: {interpret.pollutionAlert(swimBan)}
+        </Text>
+      </View>
     </View>
   );
 }
 
 const style = {
-  body: 'bg-blue-400 h-full',
+  body: '',
   beachName:
     'bg-white bg-opacity-20 p-4 m-3 rounded-xl border border-gray-300 text-4xl font-bold text-white  text-center',
   keyInfoContainer:

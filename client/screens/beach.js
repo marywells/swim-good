@@ -3,6 +3,7 @@ import React from 'react';
 import { View, Text, BackHandler } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { BeachDetails } from '../components/beach-details';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export function Beach({
   beach,
@@ -26,21 +27,30 @@ export function Beach({
   );
   return (
     <View>
-      {swimConditions.waveHeight && (
-        <View style={tailwind(style.body)}>
-          <BeachDetails
-            beach={beach}
-            swimConditions={swimConditions}
-            tideTimes={tideTimes}
-            isFavourite={isFavourite}
-            favourites={favourites}
-          ></BeachDetails>
-        </View>
-      )}
+      <LinearGradient
+        colors={['#05545C', 'transparent']}
+        style={tailwind(style.body)}
+      >
+        {swimConditions.waveHeight ? (
+          <View>
+            <BeachDetails
+              beach={beach}
+              swimConditions={swimConditions}
+              tideTimes={tideTimes}
+              isFavourite={isFavourite}
+              favourites={favourites}
+            ></BeachDetails>
+          </View>
+        ) : (
+          <Text style={tailwind(style.choose)}>Choose a beach</Text>
+        )}
+      </LinearGradient>
     </View>
   );
 }
 
 const style = {
-  body: 'bg-blue-400 h-full',
+  body: 'h-full',
+  choose:
+    'bg-white bg-opacity-20 p-3 m-4 mt-10 rounded-xl border border-gray-300 text-4xl font-bold text-white  text-center',
 };
