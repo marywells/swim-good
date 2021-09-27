@@ -2,8 +2,9 @@ import 'react-native-gesture-handler';
 import React, { useState, useEffect } from 'react';
 import tailwind from 'tailwind-rn';
 import moment from 'moment';
-import { SafeAreaView } from 'react-native';
+import { View, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { Splash } from './screens/splash';
 import { Search } from './screens/search';
 import { Beach } from './screens/beach';
 import { Favourites } from './screens/favourites';
@@ -23,8 +24,12 @@ export default function App() {
   const [favourites, setFaves] = useState([]);
   const [journalEntries, setEntries] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [splash, setSplash] = useState(true);
 
   useEffect(() => {
+    setTimeout(function () {
+      setSplash(false);
+    }, 2500);
     updateFavourites();
     updateJournalEntries();
   }, []);
@@ -111,6 +116,9 @@ export default function App() {
     ApiService.deleteEntry(ID).then(() => updateJournalEntries());
   }
 
+  if (splash) {
+    return <Splash></Splash>;
+  }
   return (
     <SafeAreaView style={tailwind(style.container)}>
       <NavigationContainer>
