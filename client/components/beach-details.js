@@ -113,8 +113,7 @@ const style = {
   waterContainer:
     'bg-white bg-opacity-40 p-2 m-3 rounded-xl border border-gray-300',
   waterText: 'text-gray-600 text-lg text-center',
-  addRemoveContainer:
-    'bg-white bg-opacity-30 p-3 m-3 ml-20 mr-20 rounded-3xl border border-gray-300',
+  addRemoveContainer: 'p-3 m-3 ml-20 mr-20 rounded-3xl',
   addText: 'text-lg text-center text-white',
   removeText: 'text-lg text-center text-white',
 };

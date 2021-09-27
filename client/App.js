@@ -8,6 +8,7 @@ import { Search } from './screens/search';
 import { Beach } from './screens/beach';
 import { Favourites } from './screens/favourites';
 import { Explore } from './screens/explore';
+import { Journal } from './screens/journal';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import * as ApiService from './api-service';
@@ -105,13 +106,15 @@ export default function App() {
               let iconName;
 
               if (route.name === 'Search') {
-                iconName = focused ? 'search' : 'search';
+                iconName = 'search';
               } else if (route.name === 'Beach') {
-                iconName = focused ? 'water-outline' : 'water-outline';
+                iconName = 'water-outline';
               } else if (route.name === 'Favourites') {
-                iconName = focused ? 'star-outline' : 'star-outline';
+                iconName = 'star-outline';
               } else if (route.name === 'Explore') {
-                iconName = focused ? 'location-outline' : 'location-outline';
+                iconName = 'location-outline';
+              } else if (route.name === 'Journal') {
+                iconName = 'book-outline';
               }
               return <Ionicons name={iconName} size={size} color={color} />;
             },
@@ -157,6 +160,9 @@ export default function App() {
                 {...props}
               />
             )}
+          </Tab.Screen>
+          <Tab.Screen name='Journal'>
+            {(props) => <Journal component={Journal} {...props} />}
           </Tab.Screen>
         </Tab.Navigator>
       </NavigationContainer>
