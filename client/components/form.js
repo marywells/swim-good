@@ -11,6 +11,7 @@ export function Form({ modalVisible, setModalVisible, submitEntry }) {
   const [comment, setComment] = useState('');
   const [distance, setDistance] = useState('');
   const [exertion, setExertion] = useState('');
+  const [duration, setDuration] = useState('');
 
   function handleSubmit() {
     if (
@@ -18,7 +19,8 @@ export function Form({ modalVisible, setModalVisible, submitEntry }) {
       location.length < 1 ||
       comment.length < 1 ||
       distance.length < 1 ||
-      exertion.length < 1
+      exertion.length < 1 ||
+      duration.length < 1
     ) {
       return;
     } else {
@@ -28,6 +30,7 @@ export function Form({ modalVisible, setModalVisible, submitEntry }) {
         comment,
         distance,
         exertion,
+        duration,
       };
       submitEntry(entry);
     }
@@ -52,14 +55,6 @@ export function Form({ modalVisible, setModalVisible, submitEntry }) {
       <View style={tailwind(style.inputField)}>
         <TextInput
           style={tailwind(style.inputText)}
-          placeholder='Describe your swim'
-          onChangeText={(t) => setComment(t)}
-          defaultValue={comment}
-        />
-      </View>
-      <View style={tailwind(style.inputField)}>
-        <TextInput
-          style={tailwind(style.inputText)}
           placeholder='Set distance'
           onChangeText={(t) => setDistance(t)}
           defaultValue={distance}
@@ -68,9 +63,25 @@ export function Form({ modalVisible, setModalVisible, submitEntry }) {
       <View style={tailwind(style.inputField)}>
         <TextInput
           style={tailwind(style.inputText)}
-          placeholder='Exertion'
+          placeholder='Exertion as %'
           onChangeText={(t) => setExertion(t)}
           defaultValue={exertion}
+        />
+      </View>
+      <View style={tailwind(style.inputField)}>
+        <TextInput
+          style={tailwind(style.inputText)}
+          placeholder='Duration 00:00'
+          onChangeText={(t) => setDuration(t)}
+          defaultValue={duration}
+        />
+      </View>
+      <View style={tailwind(style.inputField)}>
+        <TextInput
+          style={tailwind(style.inputText)}
+          placeholder='Describe your swim'
+          onChangeText={(t) => setComment(t)}
+          defaultValue={comment}
         />
       </View>
       <TouchableOpacity
@@ -96,8 +107,8 @@ export function Form({ modalVisible, setModalVisible, submitEntry }) {
 }
 
 const style = {
-  inputField: 'bg-gray-100 w-72 p-2 m-1 ml-3 mr-3',
+  inputField: 'bg-gray-100 w-72 p-2 m-1 ml-3 mr-3 rounded-2xl',
   inputText: '',
-  modalButton: 'w-20 p-2 m-1 rounded-3xl self-center',
+  modalButton: 'w-20 p-2 m-1 rounded-2xl self-center',
   modalButtonText: 'text-sm text-center text-white',
 };

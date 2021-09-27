@@ -67,7 +67,7 @@ export function addBeach(item) {
 
 export function addEntry(item) {
   console.log('apiservice', item);
-  const { date, location, comment, distance, exertion } = item;
+  const { date, location, comment, distance, exertion, duration } = item;
   return fetch(`${serverURL}/journal/post`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -77,6 +77,7 @@ export function addEntry(item) {
       comment,
       distance,
       exertion,
+      duration,
     }),
   });
 }

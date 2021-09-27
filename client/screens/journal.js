@@ -56,7 +56,7 @@ export function Journal({ journalEntries, submitEntry, removeEntry }) {
 
 const style = {
   body: 'h-full',
-  journal: 'pt-5 m-3 rounded-xl text-4xl font-bold text-white text-center',
+  journal: 'pt-5 m-3 mb-1 text-4xl font-bold text-white text-center',
   modalView: 'm-4 p-2 bg-white rounded-3xl items-center',
   centerView: 'flex-1 justify-center items-center',
   addButton: 'p-3 m-3 ml-20 mr-20 rounded-3xl',

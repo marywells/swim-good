@@ -66,7 +66,7 @@ export default function App() {
 
     setSwimConditions({
       waveHeight: '1.2 m',
-      swellDir: calcSwellDir(180),
+      swellDir: calcSwellDir(60),
 
       windSpeed: '0.3 m/s',
       waterTemp: '15°C',
@@ -95,8 +95,8 @@ export default function App() {
     // });
 
     setTideTimes({
-      highTides: ['05:09 & 17:47'],
-      lowTides: ['11:48'],
+      highTides: ['05:09 | 17:47'],
+      lowTides: ['11:48 | 19:48'],
     });
   }
 

@@ -1,4 +1,5 @@
 const { Entry } = require('../model/model');
+const moment = require('moment');
 
 async function getAll(req, res) {
   try {
@@ -20,6 +21,7 @@ async function postOne(req, res) {
       comment: req.body.comment,
       distance: req.body.distance,
       exertion: req.body.exertion,
+      duration: req.body.duration,
     }).save();
     res.status(200);
     res.send(entry);
@@ -40,10 +42,16 @@ async function deleteOne(req, res) {
 }
 
 function dateSorter(a, b) {
-  if (a.date > b.date) {
+  if (
+    moment(a.date, 'DD-MM-YYYY').format('unix') >
+    moment(b.date, 'DD-MM-YYYY').format('unix')
+  ) {
     return -1;
   }
-  if (a.date < b.date) {
+  if (
+    moment(a.date, 'DD-MM-YYYY').format('unix') <
+    moment(b.date, 'DD-MM-YYYY').format('unix')
+  ) {
     return 1;
   }
   return 0;
