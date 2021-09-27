@@ -9,8 +9,7 @@ export function JournalItem({ item, removeEntry }) {
     <View>
       <View style={tailwind(style.journalContainer)}>
         <Text style={tailwind(style.journalDate)}>
-          {moment(item.date, 'DD-MM-YYYY').utc().format('Do MMMM ')}at{' '}
-          {item.location}
+          {moment(item.date, 'DD-MM-YYYY').format('Do MMMM ')}at {item.location}
         </Text>
         <Text style={tailwind(style.journalData)}>
           {item.comment}

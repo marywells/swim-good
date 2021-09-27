@@ -3,6 +3,7 @@ const { Favourite } = require('../model/model');
 async function getAll(req, res) {
   try {
     const favourites = await Favourite.find();
+    favourites.sort(alphabetise);
     res.status(200);
     res.send(favourites);
   } catch (err) {
@@ -38,6 +39,18 @@ async function deleteOne(req, res) {
     res.status(500);
     console.log(err);
   }
+}
+
+function alphabetise(a, b) {
+  var labelA = a.label.toUpperCase();
+  var labelB = b.label.toUpperCase();
+  if (labelA < labelB) {
+    return -1;
+  }
+  if (labelA > labelB) {
+    return 1;
+  }
+  return 0;
 }
 
 module.exports = { getAll, postOne, deleteOne };
