@@ -57,15 +57,24 @@ export function BeachDetails({
           <Text style={tailwind(style.tideText)}>{tideTimes.lowTides}</Text>
         </View>
       </View>
-      <View style={tailwind(style.waterContainer)}>
-        <Text style={tailwind(style.waterText)}>
-          🏊🏽‍♀️ {interpret.rateWaterQuality(classification)} water quality
-          {'\n'}
-          {interpret.starRating(classification)}
-          {'\n'}
-          Pollution alert: {interpret.pollutionAlert(swimBan)}
-        </Text>
+
+      <View style={tailwind(style.tideContainer)}>
+        <View>
+          <Text style={tailwind(style.tideTextHeader)}>
+            {interpret.rateWaterQuality(classification)} water quality
+          </Text>
+          <Text style={tailwind(style.waterText)}>
+            {interpret.starRating(classification)}
+          </Text>
+        </View>
+        <View>
+          <Text style={tailwind(style.tideTextHeader)}>Pollution alert</Text>
+          <Text style={tailwind(style.waterText)}>
+            {interpret.pollutionAlert(swimBan)}
+          </Text>
+        </View>
       </View>
+
       {interpret.isFave(label, favourites) ? (
         <View
           style={[
@@ -113,7 +122,7 @@ const style = {
   tideTextHeader: 'text-gray-600 font-bold text-sm text-center',
   tideText: 'text-gray-600 text-xl text-center',
   waterContainer:
-    'bg-white bg-opacity-40 p-1 m-2 rounded-xl border border-gray-300',
+    'bg-white bg-opacity-40 p-2 m-2 rounded-xl border border-gray-300 flex-row justify-around',
   waterText: 'text-gray-600 text-lg text-center',
   addRemoveContainer: 'p-3 m-3 ml-20 mr-20 rounded-3xl',
   addText: 'text-lg text-center text-white',

@@ -13,7 +13,7 @@ export function rateWaterQuality(num) {
 }
 
 export function pollutionAlert(bool) {
-  if (bool === true) return '🚫 Advise against bathing';
+  if (bool === true) return `🚫 Advise against swim`;
   if (bool === false) return '✔️ Safe to swim';
 }
 
