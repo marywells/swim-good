@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const controller = require('./controller');
 
-router.get('/get', controller.getAll);
-router.post('/post', controller.postOne);
-router.delete('/delete', controller.deleteOne);
+router.get('/favourites/get', controller.getAll);
+router.post('/favourites/post', controller.postOne);
+router.delete('/favourites/delete', controller.deleteOne);
 
 module.exports = router;
