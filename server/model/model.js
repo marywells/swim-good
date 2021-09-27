@@ -15,7 +15,7 @@ const entrySchema = new mongoose.Schema({
   location: String,
   comment: String,
   distance: String,
-  Exertion: String,
+  exertion: String,
 });
 
 const Favourite = mongoose.model('Favourite', favouriteSchema);
