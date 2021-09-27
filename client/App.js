@@ -88,13 +88,6 @@ export default function App() {
     });
   }
 
-  function clearFields() {
-    setBeach({ label: '', classification: '', swimBan: '' });
-    setSwimConditions('');
-    setTideTimes('');
-    updateFavourites();
-  }
-
   function isFavourite(bool) {
     if (bool) {
       ApiService.removeBeach(beach.EUBWID).then(() => updateFavourites());
@@ -142,7 +135,6 @@ export default function App() {
                 favourites={favourites}
                 isFavourite={isFavourite}
                 isLoading={isLoading}
-                clearFields={clearFields}
               />
             )}
           </Tab.Screen>

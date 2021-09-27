@@ -1,7 +1,6 @@
 import tailwind from 'tailwind-rn';
 import React from 'react';
-import { View, Text, BackHandler } from 'react-native';
-import { useFocusEffect } from '@react-navigation/native';
+import { View, Text, ActivityIndicator } from 'react-native';
 import { BeachDetails } from '../components/beach-details';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -9,23 +8,10 @@ export function Beach({
   beach,
   swimConditions,
   tideTimes,
-  clearFields,
   favourites,
   isFavourite,
   isLoading,
 }) {
-  useFocusEffect(
-    React.useCallback(() => {
-      const onBackPress = () => {
-        clearFields();
-        return false;
-      };
-      BackHandler.addEventListener('hardwareBackPress', onBackPress);
-      return () => {
-        BackHandler.removeEventListener('hardwareBackPress', onBackPress);
-      };
-    }, [])
-  );
   return (
     <View>
       <LinearGradient
@@ -34,7 +20,9 @@ export function Beach({
       >
         <View>
           {isLoading ? (
-            <Text>loading!</Text>
+            <View style={tailwind(style.loading)}>
+              <ActivityIndicator size='large' color='#05545C' />
+            </View>
           ) : (
             <BeachDetails
               beach={beach}
@@ -52,6 +40,7 @@ export function Beach({
 
 const style = {
   body: 'h-full',
+  loading: 'h-full justify-center justify-around items-center',
   choose:
-    'bg-white bg-opacity-20 p-3 m-4 mt-10 rounded-xl border border-gray-300 text-4xl font-bold text-white  text-center',
+    'bg-white bg-opacity-20 p-3 m-4 mt-10 rounded-xl border border-gray-300 text-4xl font-bold text-white text-center',
 };
