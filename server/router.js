@@ -1,8 +1,13 @@
 const router = require('express').Router();
-const controller = require('./controller');
+const favouritesController = require('./controllers/favourites-controller');
+const journalController = require('./controllers/journal-controller');
 
-router.get('/favourites/get', controller.getAll);
-router.post('/favourites/post', controller.postOne);
-router.delete('/favourites/delete', controller.deleteOne);
+router.get('/favourites/get', favouritesController.getAll);
+router.post('/favourites/post', favouritesController.postOne);
+router.delete('/favourites/delete', favouritesController.deleteOne);
+
+router.get('/journal/get', journalController.getAll);
+router.post('/journal/post', journalController.postOne);
+router.delete('/journal/delete', journalController.deleteOne);
 
 module.exports = router;

@@ -10,6 +10,15 @@ const favouriteSchema = new mongoose.Schema({
   long: Number,
 });
 
-const Favourite = mongoose.model('Favourite', favouriteSchema);
+const entrySchema = new mongoose.Schema({
+  date: String,
+  location: String,
+  comment: String,
+  distance: String,
+  Exertion: String,
+});
 
-module.exports = Favourite;
+const Favourite = mongoose.model('Favourite', favouriteSchema);
+const Entry = mongoose.model('Entry', entrySchema);
+
+module.exports = { Favourite, Entry };
