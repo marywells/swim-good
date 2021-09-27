@@ -9,6 +9,7 @@ import {
   StyleSheet,
   TouchableHighlight,
 } from 'react-native';
+import { Form } from '../components/form';
 import { JournalItem } from '../components/journal-item';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -62,30 +63,10 @@ export function Journal({ navigation }) {
         >
           <View style={tailwind(style.centerView)}>
             <View style={tailwind(style.modalView)}>
-              <Text>Enter your information</Text>
-              <TouchableHighlight
-                style={[
-                  tailwind(style.addButton),
-                  { backgroundColor: '#05545C' },
-                ]}
-                onPress={() => {
-                  setModalVisible(!modalVisible);
-                }}
-              >
-                <Text style={tailwind(style.addText)}>add</Text>
-              </TouchableHighlight>
-
-              <TouchableHighlight
-                style={[
-                  tailwind(style.addButton),
-                  { backgroundColor: '#05545C' },
-                ]}
-                onPress={() => {
-                  setModalVisible(!modalVisible);
-                }}
-              >
-                <Text style={tailwind(style.addText)}>cancel</Text>
-              </TouchableHighlight>
+              <Form
+                modalVisible={modalVisible}
+                setModalVisible={setModalVisible}
+              ></Form>
             </View>
           </View>
         </Modal>
@@ -109,7 +90,7 @@ export function Journal({ navigation }) {
 
 const style = {
   body: 'h-full',
-  journal: 'p-1 pt-2 m-3 rounded-xl text-4xl font-bold text-white text-center',
+  journal: 'p-1 pt-5 m-3 rounded-xl text-4xl font-bold text-white text-center',
   modalView: 'm-4 p-2 bg-white rounded-3xl items-center',
   centerView: 'flex-1 justify-center items-center',
   addButton: 'p-3 m-3 ml-20 mr-20 rounded-3xl',
