@@ -1,9 +1,9 @@
 import tailwind from 'tailwind-rn';
 import React, { useState } from 'react';
 import moment from 'moment';
-import { View, Text, TextInput, TouchableHighlight } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 
-export function Form({ modalVisible, setModalVisible }) {
+export function Form({ modalVisible, setModalVisible, submitEntry }) {
   const today = moment().format('DD-MM-YYYY');
 
   const [date, setDate] = useState(today);
@@ -13,7 +13,24 @@ export function Form({ modalVisible, setModalVisible }) {
   const [exertion, setExertion] = useState('');
 
   function handleSubmit() {
-    console.log(date, comment, location, distance, exertion);
+    if (
+      date.length < 1 ||
+      location.length < 1 ||
+      comment.length < 1 ||
+      distance.length < 1 ||
+      exertion.length < 1
+    ) {
+      return;
+    } else {
+      const entry = {
+        date,
+        location,
+        comment,
+        distance,
+        exertion,
+      };
+      submitEntry(entry);
+    }
   }
   return (
     <View>
@@ -56,7 +73,7 @@ export function Form({ modalVisible, setModalVisible }) {
           defaultValue={exertion}
         />
       </View>
-      <TouchableHighlight
+      <TouchableOpacity
         style={[tailwind(style.modalButton), { backgroundColor: '#05545C' }]}
         onPress={() => {
           handleSubmit();
@@ -64,16 +81,16 @@ export function Form({ modalVisible, setModalVisible }) {
         }}
       >
         <Text style={tailwind(style.modalButtonText)}>add</Text>
-      </TouchableHighlight>
+      </TouchableOpacity>
 
-      <TouchableHighlight
+      <TouchableOpacity
         style={[tailwind(style.modalButton), { backgroundColor: '#05545C' }]}
         onPress={() => {
           setModalVisible(!modalVisible);
         }}
       >
         <Text style={tailwind(style.modalButtonText)}>cancel</Text>
-      </TouchableHighlight>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -81,6 +98,6 @@ export function Form({ modalVisible, setModalVisible }) {
 const style = {
   inputField: 'bg-gray-100 w-72 p-2 m-1 ml-3 mr-3',
   inputText: '',
-  modalButton: 'w-20 p-2 m-2 rounded-3xl self-center',
+  modalButton: 'w-20 p-2 m-1 rounded-3xl self-center',
   modalButtonText: 'text-sm text-center text-white',
 };

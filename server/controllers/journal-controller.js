@@ -30,7 +30,7 @@ async function postOne(req, res) {
 
 async function deleteOne(req, res) {
   try {
-    await Entry.deleteOne({ _id: req.body._id }); //need to refactor with ID
+    await Entry.deleteOne({ _id: req.body._id });
     res.sendStatus(200);
   } catch (err) {
     res.status(500);

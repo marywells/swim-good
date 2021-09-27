@@ -42,6 +42,12 @@ export function getFavourites() {
     .then((data) => data);
 }
 
+export function getJournalEntries() {
+  return fetch(`${serverURL}/journal/get`)
+    .then((response) => response.json())
+    .then((data) => data);
+}
+
 export function addBeach(item) {
   const { EUBWID, label, district, classification, swimBan, lat, long } = item;
   return fetch(`${serverURL}/favourites/post`, {
@@ -59,12 +65,38 @@ export function addBeach(item) {
   });
 }
 
+export function addEntry(item) {
+  console.log('apiservice', item);
+  const { date, location, comment, distance, exertion } = item;
+  return fetch(`${serverURL}/journal/post`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      date,
+      location,
+      comment,
+      distance,
+      exertion,
+    }),
+  });
+}
+
 export function removeBeach(EUBWID) {
   return fetch(`${serverURL}/favourites/delete`, {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       EUBWID,
+    }),
+  });
+}
+
+export function deleteEntry(_id) {
+  return fetch(`${serverURL}/journal/delete`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      _id,
     }),
   });
 }

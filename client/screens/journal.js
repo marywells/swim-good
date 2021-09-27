@@ -1,50 +1,15 @@
 import tailwind from 'tailwind-rn';
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  Modal,
-  StyleSheet,
-  TouchableHighlight,
-} from 'react-native';
+import { View, Text, FlatList, Modal, TouchableOpacity } from 'react-native';
 import { Form } from '../components/form';
 import { JournalItem } from '../components/journal-item';
 import { LinearGradient } from 'expo-linear-gradient';
 
-export function Journal({ navigation }) {
-  const journalEntries = [
-    {
-      ID: '1',
-      date: '2021-09-27',
-      comment: 'Morning swim - leisurely pace',
-      location: 'Scarborough',
-      distance: '1km',
-      exertion: 'Easy',
-    },
-    {
-      ID: '2',
-      date: '2021-09-13',
-      comment: 'Horrible conditions, freezing cold',
-      location: 'Filey',
-      distance: '1.5k',
-      exertion: 'Tough',
-    },
-    {
-      ID: '3',
-      date: '2021-09-12',
-      comment: 'Why is it raining so much?',
-      location: 'Whitby',
-      distance: '800m',
-      exertion: 'Easy',
-    },
-  ];
-
+export function Journal({ journalEntries, submitEntry, removeEntry }) {
   const [modalVisible, setModalVisible] = useState(false);
 
   function renderItem({ item }) {
-    return <JournalItem item={item}></JournalItem>;
+    return <JournalItem item={item} removeEntry={removeEntry}></JournalItem>;
   }
   return (
     <View>
@@ -66,22 +31,23 @@ export function Journal({ navigation }) {
               <Form
                 modalVisible={modalVisible}
                 setModalVisible={setModalVisible}
+                submitEntry={submitEntry}
               ></Form>
             </View>
           </View>
         </Modal>
-        <TouchableHighlight
+        <TouchableOpacity
           style={[tailwind(style.addButton), { backgroundColor: '#05545C' }]}
           onPress={() => {
             setModalVisible(true);
           }}
         >
           <Text style={tailwind(style.addText)}>add an entry</Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
         <FlatList
           data={journalEntries}
           renderItem={renderItem}
-          keyExtractor={(item) => item.ID}
+          keyExtractor={(item) => item._id}
         />
       </LinearGradient>
     </View>
@@ -90,7 +56,7 @@ export function Journal({ navigation }) {
 
 const style = {
   body: 'h-full',
-  journal: 'p-1 pt-5 m-3 rounded-xl text-4xl font-bold text-white text-center',
+  journal: 'pt-5 m-3 rounded-xl text-4xl font-bold text-white text-center',
   modalView: 'm-4 p-2 bg-white rounded-3xl items-center',
   centerView: 'flex-1 justify-center items-center',
   addButton: 'p-3 m-3 ml-20 mr-20 rounded-3xl',

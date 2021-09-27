@@ -21,10 +21,12 @@ export default function App() {
   const [swimConditions, setSwimConditions] = useState('');
   const [tideTimes, setTideTimes] = useState('');
   const [favourites, setFaves] = useState([]);
+  const [journalEntries, setEntries] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     updateFavourites();
+    updateJournalEntries();
   }, []);
 
   function updateFavourites() {
@@ -32,7 +34,11 @@ export default function App() {
       setFaves(data);
     });
   }
-
+  function updateJournalEntries() {
+    ApiService.getJournalEntries().then((data) => {
+      setEntries(data);
+    });
+  }
   function updateBeach(item) {
     setIsLoading(true);
     getMarineData(item.lat, item.long);
@@ -95,6 +101,14 @@ export default function App() {
     } else {
       ApiService.addBeach(beach).then(() => updateFavourites());
     }
+  }
+
+  function submitEntry(input) {
+    ApiService.addEntry(input).then(() => updateJournalEntries());
+  }
+
+  function removeEntry(ID) {
+    ApiService.deleteEntry(ID).then(() => updateJournalEntries());
   }
 
   return (
@@ -162,7 +176,15 @@ export default function App() {
             )}
           </Tab.Screen>
           <Tab.Screen name='Journal'>
-            {(props) => <Journal component={Journal} {...props} />}
+            {(props) => (
+              <Journal
+                component={Journal}
+                journalEntries={journalEntries}
+                submitEntry={submitEntry}
+                removeEntry={removeEntry}
+                {...props}
+              />
+            )}
           </Tab.Screen>
         </Tab.Navigator>
       </NavigationContainer>
