@@ -1,6 +1,6 @@
 import tailwind from 'tailwind-rn';
-import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, Modal } from 'react-native';
 import * as interpret from './interpreters';
 import LottieView from 'lottie-react-native';
 import moment from 'moment';
@@ -12,6 +12,7 @@ export function BeachDetails({
   isFavourite,
   favourites,
 }) {
+  const [modalVisible, setModalVisible] = useState(false);
   const { label, classification, swimBan } = beach;
   const today = moment().format('DD MMMM');
 
@@ -109,7 +110,12 @@ export function BeachDetails({
         </View>
       </View>
 
-      <View style={tailwind(style.lowerContainer)}>
+      <TouchableOpacity
+        onPress={() => {
+          setModalVisible(true);
+        }}
+        style={tailwind(style.lowerContainer)}
+      >
         <View>
           <Text style={tailwind(style.tideTextHeader)}>
             {interpret.rateWaterQuality(classification)} water quality
@@ -124,7 +130,42 @@ export function BeachDetails({
             {interpret.pollutionAlert(swimBan)}
           </Text>
         </View>
-      </View>
+      </TouchableOpacity>
+
+      <Modal animationType='slide' transparent={true} visible={modalVisible}>
+        <View style={tailwind(style.centerView)}>
+          <View style={tailwind(style.modalView)}>
+            <Text style={tailwind(style.modalTitle)}>Water quality</Text>
+            <Text>
+              Classification calculated annually by the UK Environment Agency,
+              based on samples from the previous four years. Classifications
+              from best to worst, are "excellent", "good", "sufficient" and
+              "poor".{'\n'}
+            </Text>
+            <Text style={tailwind(style.modalTitle)}>Pollution alert</Text>
+            <Text>
+              Pollution alerts are based on the effects of tide, wind and
+              seasonality on water quality. These factors affect the levels of
+              bacteria that get washed into the sea. When these factors combine
+              to make short term pollution, a pollution alert is issued.{'\n'}
+            </Text>
+            <Text style={[tailwind(style.modalTitle), { color: '#05545C' }]}>
+              https://environment.data.gov.uk/{'\n'}
+            </Text>
+            <TouchableOpacity
+              style={[
+                tailwind(style.modalButton),
+                { backgroundColor: '#05545C' },
+              ]}
+              onPress={() => {
+                setModalVisible(!modalVisible);
+              }}
+            >
+              <Text style={tailwind(style.modalButtonText)}>close</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
 
       {interpret.isFave(label, favourites) ? (
         <View
@@ -174,4 +215,9 @@ const style = {
   addRemoveContainer: 'p-3 m-3 ml-24 mr-24 rounded-3xl',
   addText: 'text-lg text-center text-white',
   removeText: 'text-lg text-center text-white',
+  modalView: 'm-4 p-10 bg-white rounded-3xl items-center',
+  centerView: 'flex-1 justify-center',
+  modalTitle: 'font-bold',
+  modalButton: 'w-20 p-2 m-1 rounded-2xl self-center',
+  modalButtonText: 'text-sm text-center text-white',
 };

@@ -29,14 +29,7 @@ export function Journal({ journalEntries, submitEntry, removeEntry }) {
             Journal
           </Text>
         </View>
-        <Modal
-          animationType='slide'
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            console.log('Modal has been closed.');
-          }}
-        >
+        <Modal animationType='slide' transparent={true} visible={modalVisible}>
           <View style={tailwind(style.centerView)}>
             <View style={tailwind(style.modalView)}>
               <Form
