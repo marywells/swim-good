@@ -1,6 +1,7 @@
 import tailwind from 'tailwind-rn';
 import React from 'react';
 import moment from 'moment';
+import { Ionicons } from '@expo/vector-icons';
 
 import { View, Text, TouchableOpacity } from 'react-native';
 
@@ -9,25 +10,26 @@ export function JournalItem({ item, removeEntry }) {
     <View>
       <View style={tailwind(style.journalOuter)}>
         <View style={tailwind(style.journalContainer)}>
-          <Text style={tailwind(style.journalDate)}>
-            {moment(item.date, 'DD-MM-YYYY').format('DD MMM ')} {'\n'}
-            {item.location}
-          </Text>
-          <Text style={tailwind(style.journalData)}>
-            Distance
-            {'\n'}
+          <View style={tailwind(style.dateContainer)}>
+            <Text style={tailwind(style.journalDate)}>
+              {moment(item.date, 'DD-MM-YYYY').format('DD MMM ')}
+            </Text>
+            <Text style={tailwind(style.journalLoc)}>{item.location}</Text>
+          </View>
+          <View>
+            <Text style={tailwind(style.journalData)}>Distance</Text>
             <Text style={tailwind(style.journalDataBold)}>{item.distance}</Text>
-          </Text>
-          <Text style={tailwind(style.journalData)}>
-            Duration{'\n'}
+          </View>
+          <View>
+            <Text style={tailwind(style.journalData)}>Duration</Text>
             <Text style={tailwind(style.journalDataBold)}>{item.duration}</Text>
-          </Text>
-          <Text style={tailwind(style.journalData)}>
-            Exertion{'\n'}
+          </View>
+          <View>
+            <Text style={tailwind(style.journalData)}>Exertion</Text>
             <Text style={tailwind(style.journalDataBold)}>
               {item.exertion}%
             </Text>
-          </Text>
+          </View>
         </View>
         <View>
           <Text style={tailwind(style.journalComment)}> {item.comment}</Text>
@@ -39,7 +41,9 @@ export function JournalItem({ item, removeEntry }) {
           removeEntry(item._id);
         }}
       >
-        <Text style={tailwind(style.delButtonText)}>delete</Text>
+        <Text style={tailwind(style.delButtonText)}>
+          <Ionicons name={'remove-circle-outline'} size={22} />
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -48,11 +52,13 @@ export function JournalItem({ item, removeEntry }) {
 const style = {
   journalOuter:
     'bg-white bg-opacity-20 p-2 m-1 rounded-2xl border border-gray-200 ',
-  journalContainer: 'flex-row justify-between',
-  journalDate: 'text-sm font-bold text-gray-600',
+  journalContainer: 'pl-1 pr-3 flex-row justify-between',
+  dateContainer: 'w-20',
+  journalDate: 'text-sm text-gray-600',
+  journalLoc: 'text-lg font-bold text-gray-700',
   journalData: 'text-xs text-gray-600 text-center',
-  journalDataBold: 'text-2xl text-gray-600 font-bold text-center',
-  journalComment: 'text-xs text-gray-600',
-  delButton: 'w-14 p-1 m-14 rounded-3xl self-end absolute',
-  delButtonText: 'text-xs text-center text-gray-500',
+  journalDataBold: 'text-3xl text-gray-700 font-bold text-center',
+  journalComment: 'text-sm text-gray-600',
+  delButton: ' p-2 m-14 rounded-3xl self-end absolute',
+  delButtonText: ' text-center text-gray-600',
 };

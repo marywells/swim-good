@@ -1,6 +1,6 @@
 import tailwind from 'tailwind-rn';
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 
 import LottieView from 'lottie-react-native';
 
@@ -12,13 +12,24 @@ export function Splash() {
         autoPlay={true}
         loop={false}
       />
+      <View style={tailwind(style.logo)}>
+        <Image
+          style={styles.tinyLogo}
+          source={require('../assets/swim-good.png')}
+        />
+      </View>
     </View>
   );
 }
 
 const style = {
-  body: 'h-full',
-  favourites: 'justify-center absolute bottom-10 left-10',
-  tabText: 'text-2xl ',
-  explore: 'justify-center absolute bottom-10 right-10',
+  body: 'h-full items-center justify-end',
+  logo: 'pb-24',
 };
+
+const styles = StyleSheet.create({
+  tinyLogo: {
+    width: 280,
+    height: 50,
+  },
+});

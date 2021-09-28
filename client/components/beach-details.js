@@ -2,6 +2,7 @@ import tailwind from 'tailwind-rn';
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import * as interpret from './interpreters';
+import LottieView from 'lottie-react-native';
 import moment from 'moment';
 
 export function BeachDetails({
@@ -16,21 +17,55 @@ export function BeachDetails({
 
   return (
     <View>
-      <Text style={tailwind(style.beachName)}>{label}</Text>
+      <View style={tailwind(style.beachName)}>
+        <Text
+          style={{
+            fontFamily: 'Archivo_900Black',
+            color: 'white',
+            fontSize: 45,
+            textAlign: 'center',
+          }}
+        >
+          {label}
+        </Text>
+      </View>
 
       <View style={tailwind(style.keyInfoContainer)}>
         <Text style={tailwind(style.date)}>Today, {today}</Text>
         <View style={tailwind(style.keyInfoInner)}>
           <View>
-            <Text style={tailwind(style.keyInfoTextHeader)}>Waves</Text>
-            <Text style={tailwind(style.keyInfoTextIcon)}>🌊</Text>
-            <Text style={tailwind(style.keyInfoText)}>
+            <Text
+              style={{
+                fontFamily: 'Archivo_900Black',
+                color: '#f5f5f5',
+                fontSize: 26,
+                textAlign: 'center',
+                paddingBottom: 12,
+              }}
+            >
+              Waves
+            </Text>
+            <LottieView
+              source={require('../assets/wave.json')}
+              autoPlay={true}
+              loop={true}
+            />
+            <Text style={tailwind(style.keyInfoTextWave)}>
               {swimConditions.waveHeight}
             </Text>
           </View>
 
           <View>
-            <Text style={tailwind(style.keyInfoTextHeader)}>Swell</Text>
+            <Text
+              style={{
+                fontFamily: 'Archivo_900Black',
+                color: '#f5f5f5',
+                fontSize: 26,
+                textAlign: 'center',
+              }}
+            >
+              Swell
+            </Text>
             <Text style={tailwind(style.keyInfoTextIcon)}>
               {swimConditions.swellDir}
             </Text>
@@ -40,14 +75,30 @@ export function BeachDetails({
           </View>
         </View>
         <View style={tailwind(style.tempContainer)}>
-          <Text style={tailwind(style.tempText)}>
-            💧 | {swimConditions.waterTemp}
-            {'\n'}⛅ | {swimConditions.airTemp}
-          </Text>
+          <View>
+            <LottieView
+              source={require('../assets/water.json')}
+              autoPlay={true}
+              loop={true}
+            />
+            <Text style={tailwind(style.tempText)}>
+              | {swimConditions.waterTemp}
+            </Text>
+          </View>
+          <View>
+            <LottieView
+              source={require('../assets/sun.json')}
+              autoPlay={true}
+              loop={true}
+            />
+            <Text style={tailwind(style.tempText)}>
+              | {swimConditions.airTemp}
+            </Text>
+          </View>
         </View>
       </View>
 
-      <View style={tailwind(style.tideContainer)}>
+      <View style={tailwind(style.lowerContainer)}>
         <View>
           <Text style={tailwind(style.tideTextHeader)}>High Tides</Text>
           <Text style={tailwind(style.tideText)}>{tideTimes.highTides}</Text>
@@ -58,7 +109,7 @@ export function BeachDetails({
         </View>
       </View>
 
-      <View style={tailwind(style.tideContainer)}>
+      <View style={tailwind(style.lowerContainer)}>
         <View>
           <Text style={tailwind(style.tideTextHeader)}>
             {interpret.rateWaterQuality(classification)} water quality
@@ -92,7 +143,7 @@ export function BeachDetails({
         <View
           style={[
             tailwind(style.addRemoveContainer),
-            { backgroundColor: '#05545C' },
+            { backgroundColor: '#357787' },
           ]}
         >
           <TouchableOpacity onPress={() => isFavourite(false)}>
@@ -105,26 +156,22 @@ export function BeachDetails({
 }
 
 const style = {
-  body: '',
-  beachName:
-    'p-1 pt-5 m-3 rounded-xl text-4xl font-bold text-white text-center',
-  date: 'text-gray-100 pb-3 text-sm text-center',
+  beachName: 'pt-1 m-1',
+  date: 'text-gray-100 pb-3 text-lg text-center',
   keyInfoContainer:
-    'bg-white bg-opacity-20 p-4 m-3 rounded-xl border border-gray-300',
+    'bg-white bg-opacity-20 p-4 m-2 rounded-xl border border-gray-300',
   keyInfoInner: 'flex-row justify-around',
-  keyInfoTextHeader: 'text-3xl  text-gray-100 text-center',
-  keyInfoTextIcon: 'text-4xl p-2 text-gray-100 font-bold text-center',
-  keyInfoText: 'text-2xl text-gray-100 font-bold text-center',
-  tempContainer: 'p-3 pt-5',
-  tempText: 'font-bold text-gray-100 text-lg text-center',
-  tideContainer:
-    'bg-white bg-opacity-40 p-2 m-2 rounded-xl border border-gray-300 flex-row justify-around',
+  keyInfoTextIcon: 'text-4xl pt-2 text-gray-100 font-bold text-center',
+  keyInfoText: 'text-2xl pt-3 text-gray-100 font-bold text-center',
+  keyInfoTextWave: 'pt-12 text-2xl text-gray-100 font-bold text-center',
+  tempContainer: 'pr-10 pt-5',
+  tempText: 'font-bold text-gray-100 text-xl text-center pl-20',
+  lowerContainer:
+    'bg-white bg-opacity-40 p-4 m-2 ml-3 mr-3 rounded-xl border border-gray-300 flex-row justify-around',
   tideTextHeader: 'text-gray-600 font-bold text-sm text-center',
   tideText: 'text-gray-600 text-xl text-center',
-  waterContainer:
-    'bg-white bg-opacity-40 p-2 m-2 rounded-xl border border-gray-300 flex-row justify-around',
   waterText: 'text-gray-600 text-lg text-center',
-  addRemoveContainer: 'p-3 m-3 ml-20 mr-20 rounded-3xl',
+  addRemoveContainer: 'p-3 m-3 ml-24 mr-24 rounded-3xl',
   addText: 'text-lg text-center text-white',
   removeText: 'text-lg text-center text-white',
 };

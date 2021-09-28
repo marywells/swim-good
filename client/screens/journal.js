@@ -17,7 +17,18 @@ export function Journal({ journalEntries, submitEntry, removeEntry }) {
         colors={['#05545C', 'white']}
         style={tailwind(style.body)}
       >
-        <Text style={tailwind(style.journal)}>Journal</Text>
+        <View style={tailwind(style.journal)}>
+          <Text
+            style={{
+              fontFamily: 'Archivo_900Black',
+              color: 'white',
+              fontSize: 45,
+              textAlign: 'center',
+            }}
+          >
+            Journal
+          </Text>
+        </View>
         <Modal
           animationType='slide'
           transparent={true}
@@ -56,9 +67,9 @@ export function Journal({ journalEntries, submitEntry, removeEntry }) {
 
 const style = {
   body: 'h-full',
-  journal: 'pt-5 m-3 mb-1 text-4xl font-bold text-white text-center',
+  journal: 'pt-1 m-1',
   modalView: 'm-4 p-2 bg-white rounded-3xl items-center',
   centerView: 'flex-1 justify-center items-center',
-  addButton: 'p-3 m-3 ml-20 mr-20 rounded-3xl',
+  addButton: 'p-3 m-1 mb-3 ml-20 mr-20 rounded-3xl',
   addText: 'text-lg text-center text-white',
 };

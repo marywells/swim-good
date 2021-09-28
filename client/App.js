@@ -14,6 +14,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import * as ApiService from './api-service';
 import { calcSwellDir } from './components/interpreters';
+import { useFonts, Archivo_900Black } from '@expo-google-fonts/archivo';
 
 const Tab = createBottomTabNavigator();
 
@@ -26,10 +27,14 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [splash, setSplash] = useState(true);
 
+  let [fontsLoaded] = useFonts({
+    Archivo_900Black,
+  });
+
   useEffect(() => {
     setTimeout(function () {
       setSplash(false);
-    }, 2500);
+    }, 2000);
     updateFavourites();
     updateJournalEntries();
   }, []);
@@ -119,85 +124,91 @@ export default function App() {
   if (splash) {
     return <Splash></Splash>;
   }
-  return (
-    <SafeAreaView style={tailwind(style.container)}>
-      <NavigationContainer>
-        <Tab.Navigator
-          screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
-              let iconName;
+  if (fontsLoaded) {
+    return (
+      <SafeAreaView style={tailwind(style.container)}>
+        <NavigationContainer>
+          <Tab.Navigator
+            screenOptions={({ route }) => ({
+              tabBarIcon: ({ focused, color, size }) => {
+                let iconName;
 
-              if (route.name === 'Search') {
-                iconName = 'search';
-              } else if (route.name === 'Beach') {
-                iconName = 'water-outline';
-              } else if (route.name === 'Favourites') {
-                iconName = 'star-outline';
-              } else if (route.name === 'Explore') {
-                iconName = 'location-outline';
-              } else if (route.name === 'Journal') {
-                iconName = 'book-outline';
-              }
-              return <Ionicons name={iconName} size={size} color={color} />;
-            },
-            tabBarActiveTintColor: '#077A87',
-            tabBarInactiveTintColor: 'gray',
-            headerShown: false,
-          })}
-        >
-          <Tab.Screen name='Search'>
-            {(props) => (
-              <Search component={Search} updateBeach={updateBeach} {...props} />
-            )}
-          </Tab.Screen>
-          <Tab.Screen name='Beach'>
-            {(props) => (
-              <Beach
-                component={Beach}
-                beach={beach}
-                swimConditions={swimConditions}
-                tideTimes={tideTimes}
-                favourites={favourites}
-                isFavourite={isFavourite}
-                isLoading={isLoading}
-              />
-            )}
-          </Tab.Screen>
-          <Tab.Screen name='Favourites'>
-            {(props) => (
-              <Favourites
-                component={Favourites}
-                updateBeach={updateBeach}
-                favourites={favourites}
-                {...props}
-              />
-            )}
-          </Tab.Screen>
+                if (route.name === 'Search') {
+                  iconName = 'search';
+                } else if (route.name === 'Beach') {
+                  iconName = 'water-outline';
+                } else if (route.name === 'Favourites') {
+                  iconName = 'star-outline';
+                } else if (route.name === 'Explore') {
+                  iconName = 'location-outline';
+                } else if (route.name === 'Journal') {
+                  iconName = 'book-outline';
+                }
+                return <Ionicons name={iconName} size={size} color={color} />;
+              },
+              tabBarActiveTintColor: '#077A87',
+              tabBarInactiveTintColor: 'gray',
+              headerShown: false,
+            })}
+          >
+            <Tab.Screen name='Search'>
+              {(props) => (
+                <Search
+                  component={Search}
+                  updateBeach={updateBeach}
+                  {...props}
+                />
+              )}
+            </Tab.Screen>
+            <Tab.Screen name='Beach'>
+              {(props) => (
+                <Beach
+                  component={Beach}
+                  beach={beach}
+                  swimConditions={swimConditions}
+                  tideTimes={tideTimes}
+                  favourites={favourites}
+                  isFavourite={isFavourite}
+                  isLoading={isLoading}
+                />
+              )}
+            </Tab.Screen>
+            <Tab.Screen name='Favourites'>
+              {(props) => (
+                <Favourites
+                  component={Favourites}
+                  updateBeach={updateBeach}
+                  favourites={favourites}
+                  {...props}
+                />
+              )}
+            </Tab.Screen>
 
-          <Tab.Screen name='Explore'>
-            {(props) => (
-              <Explore
-                component={Explore}
-                updateBeach={updateBeach}
-                {...props}
-              />
-            )}
-          </Tab.Screen>
-          <Tab.Screen name='Journal'>
-            {(props) => (
-              <Journal
-                component={Journal}
-                journalEntries={journalEntries}
-                submitEntry={submitEntry}
-                removeEntry={removeEntry}
-                {...props}
-              />
-            )}
-          </Tab.Screen>
-        </Tab.Navigator>
-      </NavigationContainer>
-    </SafeAreaView>
-  );
+            <Tab.Screen name='Journal'>
+              {(props) => (
+                <Journal
+                  component={Journal}
+                  journalEntries={journalEntries}
+                  submitEntry={submitEntry}
+                  removeEntry={removeEntry}
+                  {...props}
+                />
+              )}
+            </Tab.Screen>
+            <Tab.Screen name='Explore'>
+              {(props) => (
+                <Explore
+                  component={Explore}
+                  updateBeach={updateBeach}
+                  {...props}
+                />
+              )}
+            </Tab.Screen>
+          </Tab.Navigator>
+        </NavigationContainer>
+      </SafeAreaView>
+    );
+  }
 }
 
 const style = {

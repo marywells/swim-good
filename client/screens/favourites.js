@@ -20,7 +20,18 @@ export function Favourites({ navigation, updateBeach, favourites }) {
         colors={['#05545C', 'white']}
         style={tailwind(style.body)}
       >
-        <Text style={tailwind(style.favourites)}>Favourites</Text>
+        <View style={tailwind(style.favourites)}>
+          <Text
+            style={{
+              fontFamily: 'Archivo_900Black',
+              color: 'white',
+              fontSize: 45,
+              textAlign: 'center',
+            }}
+          >
+            Favourites
+          </Text>
+        </View>
         <FlatList
           data={favourites}
           renderItem={renderItem}
@@ -33,6 +44,5 @@ export function Favourites({ navigation, updateBeach, favourites }) {
 
 const style = {
   body: 'h-full',
-  favourites:
-    'p-1 pt-5 m-3 rounded-xl text-4xl font-bold text-white text-center',
+  favourites: 'pt-1 m-1',
 };
