@@ -19,10 +19,10 @@ Plans for the future:
 
 ## Built with
 
-[React Native](https://reactnative.dev/)  
-[Expo](https://docs.expo.dev/)  
-[Tailwind](https://tailwindcss.com/)  
-[Lottie](https://lottiefiles.com/)  
-[Express](https://expressjs.com/)  
-[MongoDB](https://docs.mongodb.com/)  
-[Mongoose](https://mongoosejs.com/)  
+* [React Native](https://reactnative.dev/)  
+* [Expo](https://docs.expo.dev/)  
+* [Tailwind](https://tailwindcss.com/)  
+* [Lottie](https://lottiefiles.com/)  
+* [Express](https://expressjs.com/)  
+* [MongoDB](https://docs.mongodb.com/)  
+* [Mongoose](https://mongoosejs.com/)  
