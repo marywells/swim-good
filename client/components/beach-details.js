@@ -200,7 +200,7 @@ const style = {
   beachName: 'pt-1 m-1',
   date: 'text-gray-100 pb-3 text-lg text-center',
   keyInfoContainer:
-    'bg-white bg-opacity-20 p-4 m-2 rounded-xl border border-gray-300',
+    'bg-white bg-opacity-20 p-4 m-2 ml-3 mr-3 rounded-xl border border-gray-300',
   keyInfoInner: 'flex-row justify-around',
   keyInfoTextIcon: 'text-4xl pt-2 text-gray-100 font-bold text-center',
   keyInfoText: 'text-2xl pt-3 text-gray-100 font-bold text-center',
