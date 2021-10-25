@@ -9,7 +9,7 @@ Swim Good enables swimmers to track the live swimming forecast and view pollutio
 1. First, get set up with [Expo](https://docs.expo.dev/) & [MongoDB](https://docs.mongodb.com/) and grab a free [Stormglass.io](https://docs.stormglass.io/) API key.
 2. ```git clone``` the repo.
 3. ```npm install``` the dependencies in both the ```client``` and ```server``` folders.
-4. Add an ```.env``` file in the ```client``` folder, and include your Stormglass API key and Expo connection.
+4. Add an ```.env``` file in the ```client``` folder, and include your Stormglass API key and Expo connection (follow the ```.env.example```).
 5. Run ```node index.js``` in the server folder and ```expo start``` in the client folder.
 6. Scan the QR code from your Expo app and start exploring!
 
