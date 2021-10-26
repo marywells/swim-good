@@ -1,8 +1,10 @@
 ## Swim Good
 
-### Live sea condition forecasting for wild swimmers.
+### Live sea condition forecasting for wild swimmers.  
 
 Swim Good enables swimmers to track the live swimming forecast and view pollution alerts at their favourite beaches, log swim data points including date, location, distance and exertion, and discover suggested beaches in new areas. Developed in React Native with Expo, using a MongoDB database with Mongoose and an Express server on the back end.
+
+<img width="800" alt="swim good app screenshots" src="https://user-images.githubusercontent.com/81030445/138861092-8f9c95d4-938d-480d-8d91-c731688ba540.png">
 
 ## Try it out
 
